@@ -38,7 +38,7 @@
     <color name="disabled_color">#BDBDBD</color>
 
     <!-- Alerts & Notifications -->
-    <color name="error">#E91E1E</color>
+    <color name="red">#E91E1E</color>
     <color name="warning">#FF9800</color>
     <color name="success">#4CAF50</color>
     <color name="info">#03A9F4</color>
