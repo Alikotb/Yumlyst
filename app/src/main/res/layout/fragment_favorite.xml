@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whole_app_color"
+    android:id="@+id/favorite_page"
    >
 
     <!-- App Logo -->
@@ -17,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="24dp"/>
 
     <!-- "Favorites" Title -->
     <androidx.appcompat.widget.AppCompatTextView
@@ -36,7 +37,7 @@
 
     <!-- RecyclerView for Favorite Items -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Daily_meal_res"
+        android:id="@+id/favoriteRecycle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -47,6 +48,17 @@
         app:layout_constraintTop_toBottomOf="@id/Favouritestxt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_homepage_navigation"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:menu="@menu/navigation_button_menu"
+        android:background="#3C3C3C"
+        app:itemIconTint="@color/white"
+        app:itemIconSize="34dp"
+        app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
