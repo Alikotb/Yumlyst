@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "159284341777",
+    "project_id": "yummylist-e05db",
+    "storage_bucket": "yummylist-e05db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159284341777:android:9cf7ce93d2c758cdd515b0",
+        "android_client_info": {
+          "package_name": "com.example.yumlyst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159284341777-aqipoo4pjbr2f8idcgoffp1q30olukpv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yumlyst",
+            "certificate_hash": "4769e2a5d2c98cd4574d0f2cb392c02e4915b2f1"
+          }
+        },
+        {
+          "client_id": "159284341777-kd4uo8mafkt8rq9stb47qfc3kg5669bp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAHfOanrxM0E7eYRRgV8adNd0DPrSHH7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159284341777-kd4uo8mafkt8rq9stb47qfc3kg5669bp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
