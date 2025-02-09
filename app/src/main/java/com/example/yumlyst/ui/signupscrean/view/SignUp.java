@@ -1,8 +1,6 @@
 package com.example.yumlyst.ui.signupscrean.view;
 
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +17,9 @@ import com.example.yumlyst.R;
 import com.example.yumlyst.ui.OnclickListneres;
 import com.example.yumlyst.ui.signupscrean.presenter.SignUpPresenter;
 
-public class SignUp extends Fragment implements OnclickListneres,ISignView {
+public class SignUp extends Fragment implements OnclickListneres, ISignView {
 
-    private Button signUpBtn,loginBtn;
+    private Button signUpBtn, loginBtn;
     private EditText edtEmail, edtPassword, edtUsername, edtConfirmPassword;
     private SignUpPresenter signUpPresenter;
 
@@ -70,43 +68,33 @@ public class SignUp extends Fragment implements OnclickListneres,ISignView {
         String passwordTxt = edtPassword.getText().toString().trim();
         String usernameTxt = edtUsername.getText().toString().trim();
         String confirmPasswordTxt = edtConfirmPassword.getText().toString().trim();
-
-        if (!validateInputs(usernameTxt, emailTxt, passwordTxt, confirmPasswordTxt)) {
-            return;
-        }
-
-        signUpPresenter.signUp(usernameTxt, emailTxt, passwordTxt);
+        signUpPresenter.signUp(usernameTxt, emailTxt, passwordTxt, confirmPasswordTxt);
     }
 
-    private boolean validateInputs(String username, String email, String password, String confirmPassword) {
-
-        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            edtEmail.setError("Enter a valid email!");
-            return false;
-        }
-
-        if (TextUtils.isEmpty(username)) {
-            edtUsername.setError("Username is required!");
-            return false;
-        }
-
-
-        if (TextUtils.isEmpty(password) || password.length() < 6) {
-            edtPassword.setError("Password must be at least 6 characters!");
-            return false;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            edtConfirmPassword.setError("Passwords do not match!");
-            return false;
-        }
-
-        return true;
-    }
 
     @Override
     public void showError(String msg) {
         Toast.makeText(getContext(), "Sign-up failed: " + msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showEmailError(String msg) {
+        edtEmail.setError(msg);
+    }
+
+    @Override
+    public void showUsernameError(String msg) {
+        edtUsername.setError(msg);
+    }
+
+    @Override
+    public void showPassError(String msg) {
+        edtPassword.setError(msg);
+    }
+
+    @Override
+    public void showConfirmPassError(String msg) {
+        edtConfirmPassword.setError(msg);
     }
 
     @Override

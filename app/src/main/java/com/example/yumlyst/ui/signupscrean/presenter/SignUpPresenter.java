@@ -1,5 +1,8 @@
 package com.example.yumlyst.ui.signupscrean.presenter;
 
+import android.text.TextUtils;
+import android.util.Patterns;
+
 import com.example.yumlyst.ui.signupscrean.view.ISignView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -15,7 +18,10 @@ public class SignUpPresenter {
         this.view=view;
     }
 
-    public void signUp(String name, String email, String password) {
+    public void signUp(String name, String email, String password, String confirmPassword) {
+        if (!validateInputs(name, email, password, confirmPassword)) {
+            return;
+        }
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
                     FirebaseUser user = authResult.getUser();
@@ -38,6 +44,31 @@ public class SignUpPresenter {
                     }
                 })
                 .addOnFailureListener(e -> view.showError(e.getMessage()));
+    }
+    private boolean validateInputs(String username, String email, String password, String confirmPassword) {
+
+        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            view.showEmailError("Enter a valid email!");
+            return false;
+        }
+
+        if (TextUtils.isEmpty(username)) {
+            view.showUsernameError("Username is required!");
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(password) || password.length() < 6) {
+            view.showPassError("Password must be at least 6 characters!");
+            return false;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            view.showConfirmPassError("Passwords do not match!");
+            return false;
+        }
+
+        return true;
     }
 
 }
