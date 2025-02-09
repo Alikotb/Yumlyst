@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstScrean"
+    android:id="@+id/login_page"
     android:background="@color/whole_app_color">
 
     <!-- App Logo -->
@@ -82,7 +82,7 @@
 
     <!-- Login Button -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_button"
+        android:id="@+id/login_loginpage_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/log_in"
@@ -109,7 +109,7 @@
         style="@style/Widget.MaterialComponents.Button"
         android:background="@drawable/transient_btn_background"
         android:drawableEnd="@drawable/google"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/login_loginpage_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
@@ -130,7 +130,7 @@
 
     <!-- Sign Up Button -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/have_account_button"
+        android:id="@+id/signUp_loginpage_btn"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

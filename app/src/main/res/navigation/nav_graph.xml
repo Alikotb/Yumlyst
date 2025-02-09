@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splach">
+
+    <fragment
+        android:id="@+id/splach"
+        android:name="com.example.yumlyst.ui.splchscrean.view.Splash"
+        android:label="Splach" >
+        <action
+            android:id="@+id/action_splach_to_firstScreen"
+            app:destination="@id/firstScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstScreen"
+        android:name="com.example.yumlyst.ui.firstscrean.view.FirstScreen"
+        android:label="FirstScreen" >
+        <action
+            android:id="@+id/action_firstScreen_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.yumlyst.ui.loginscrean.view.Login"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login_to_signUp"
+            app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_login_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.example.yumlyst.ui.signupscrean.view.SignUp"
+        android:label="SignUp" >
+        <action
+            android:id="@+id/action_signUp_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_signUp_to_home22"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.yumlyst.ui.homescrean.view.Home"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_home2_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorite"
+        android:name="com.example.yumlyst.ui.favoritescrean.view.Favorite"
+        android:label="Favorite" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.yumlyst.ui.profilescrean.view.Profile"
+        android:label="Profile" >
+        <action
+            android:id="@+id/action_profile_to_favorite"
+            app:destination="@id/favorite" />
+        <action
+            android:id="@+id/action_profile_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/plan"
+        android:name="com.example.yumlyst.ui.planscrean.view.Plan"
+        android:label="Plan" />
+</navigation>

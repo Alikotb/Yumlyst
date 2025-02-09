@@ -2,59 +2,42 @@ package com.example.yumlyst.ui.profilescrean.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.yumlyst.R;
+import com.example.yumlyst.ui.OnclickListneres;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Profile#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Profile extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class Profile extends Fragment implements OnclickListneres {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ImageButton back_button;
+    ShapeableImageView profile_image;
+    MaterialAutoCompleteTextView username;
+    MaterialAutoCompleteTextView email;
+    MaterialButton Favourites_button;
+    MaterialButton logout_button;
 
     public Profile() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Profile.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Profile newInstance(String param1, String param2) {
-        Profile fragment = new Profile();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -62,5 +45,34 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        findById();
+        setListeners();
+    }
+
+    @Override
+    public void setListeners() {
+        back_button.setOnClickListener(v->{
+            Navigation.findNavController(v).navigate(R.id.action_profile_to_home2);
+        });
+        Favourites_button.setOnClickListener(v->{
+            Navigation.findNavController(v).navigate(R.id.action_profile_to_favorite);
+        });
+        logout_button.setOnClickListener(v-> {
+        });
+
+    }
+    private void findById() {
+        back_button = getActivity().findViewById(R.id.back_button);
+        profile_image = getActivity().findViewById(R.id.profile_profilepage_image);
+        username = getActivity().findViewById(R.id.username);
+        email = getActivity().findViewById(R.id.email);
+        Favourites_button = getActivity().findViewById(R.id.Favourites_button);
+        logout_button = getActivity().findViewById(R.id.logout_button);
+
     }
 }

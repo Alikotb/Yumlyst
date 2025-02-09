@@ -2,59 +2,38 @@ package com.example.yumlyst.ui.loginscrean.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.yumlyst.R;
+import com.example.yumlyst.ui.OnclickListneres;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Login#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Login extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class Login extends Fragment implements OnclickListneres {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    Button loginBtn;
+    Button signUpBtn;
+    Button googleBtn;
+    EditText email;
+    EditText password;
+    String emailTxt,passwordTxt;
 
     public Login() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Login.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Login newInstance(String param1, String param2) {
-        Login fragment = new Login();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -62,5 +41,38 @@ public class Login extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        findById();
+        setListeners();
+    }
+
+    @Override
+    public void setListeners() {
+        loginBtn.setOnClickListener(v->{
+             emailTxt = email.getText().toString();
+             passwordTxt = password.getText().toString();
+            Navigation.findNavController(v).navigate(R.id.action_login_to_home2);
+
+        });
+        signUpBtn.setOnClickListener(v->{
+            Navigation.findNavController(v).navigate(R.id.action_login_to_signUp);
+        });
+
+        googleBtn.setOnClickListener(v->{
+            Navigation.findNavController(v).navigate(R.id.action_login_to_home2);
+        });
+
+    }
+    private void findById(){
+        loginBtn = getActivity().findViewById(R.id.login_loginpage_button);
+        signUpBtn = getActivity().findViewById(R.id.signUp_loginpage_btn);
+        googleBtn = getActivity().findViewById(R.id.loginWithGoogle_button);
+        email = getActivity().findViewById(R.id.edtEmail);
+        password = getActivity().findViewById(R.id.edtpassword);
+
     }
 }
