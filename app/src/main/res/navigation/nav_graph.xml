@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_firstScreen_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_firstScreen_to_home2"
+            app:destination="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/login"

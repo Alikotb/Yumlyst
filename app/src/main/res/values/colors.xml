@@ -67,4 +67,6 @@
     <color name="olive">#808000</color>
     <color name="gold">#FFD700</color>
     <color name="silver">#C0C0C0</color>
+    <color name="Dark_Gray">#3C3C3C</color>
+    <color name="Ligt_blue">#80BFFF</color>
 </resources>

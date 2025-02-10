@@ -214,17 +214,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:menu="@menu/navigation_button_menu"
-        android:background="#3C3C3C"
-        app:itemIconTint="@color/white"
-        app:itemIconSize="34dp"
-        app:itemTextColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 
 

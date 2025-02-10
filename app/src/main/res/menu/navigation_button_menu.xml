@@ -1,17 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/Home_page"
-        android:enabled="true"
+        android:id="@+id/home2"
         android:icon="@drawable/home"
         android:title="@string/home"/>
     <item
-        android:id="@+id/plan_page"
-        android:enabled="true"
+        android:id="@+id/plan"
         android:icon="@drawable/plan"
         android:title="@string/plan"/>
     <item
-        android:id="@+id/favorite_page"
-        android:enabled="true"
+        android:id="@+id/favorite"
         android:icon="@drawable/favourite"
         android:title="@string/favourites_btn"/>
 
