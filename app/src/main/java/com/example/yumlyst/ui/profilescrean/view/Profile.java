@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.bumptech.glide.Glide;
+import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
 import com.example.yumlyst.ui.OnclickListneres;
 import com.example.yumlyst.ui.profilescrean.presenter.ProfilePresenter;
@@ -46,6 +47,8 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.hideNavigationBottom();
         findViews(view);
         setListeners();
         profilePresenter.handleFetchUserData();

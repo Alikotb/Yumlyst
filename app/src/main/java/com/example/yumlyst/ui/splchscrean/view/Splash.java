@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
 
 
@@ -38,7 +39,8 @@ public class Splash extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.hideNavigationBottom();
         LottieAnimationView lottieView = view.findViewById(R.id.lottieAnimationView);
         lottieView.playAnimation();
         lottieView.addAnimatorListener(new AnimatorListenerAdapter() {

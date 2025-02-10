@@ -52,7 +52,7 @@ public class FirstScreen extends Fragment implements OnclickListneres {
             Navigation.findNavController(v).navigate(R.id.action_firstScreen_to_login);
         });
         skipBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_firstScreen_to_login);
+            Navigation.findNavController(v).navigate(R.id.action_firstScreen_to_home2);
         });
     }
 

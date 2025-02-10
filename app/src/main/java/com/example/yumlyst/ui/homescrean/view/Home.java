@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
 import com.example.yumlyst.ui.OnclickListneres;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -51,6 +52,8 @@ public class Home extends Fragment implements OnclickListneres {
         super.onViewCreated(view, savedInstanceState);
         findById();
         setListeners();
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.showNavigationBottom();
 
     }
     @Override
@@ -70,7 +73,6 @@ public class Home extends Fragment implements OnclickListneres {
         Daily_meal_res = getActivity().findViewById(R.id.Daily_meal_res);
         categoryResc = getActivity().findViewById(R.id.categoryResc);
         CountiesResc = getActivity().findViewById(R.id.CountiesResc);
-        bottom_navigation = getActivity().findViewById(R.id.bottom_homepage_navigation);
 
     }
 }
