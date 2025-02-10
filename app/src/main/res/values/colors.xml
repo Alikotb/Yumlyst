@@ -52,7 +52,7 @@
     <color name="pink">#E91E63</color>
     <color name="purple">#9C27B0</color>
     <color name="deep_purple">#673AB7</color>
-    <color name="indigo">#3F51B5</color>
+    <color name="indigo">#923F51B5</color>
     <color name="blue">#2196F3</color>
     <color name="cyan">#00BCD4</color>
     <color name="teal">#009688</color>
@@ -69,4 +69,5 @@
     <color name="silver">#C0C0C0</color>
     <color name="Dark_Gray">#3C3C3C</color>
     <color name="Ligt_blue">#80BFFF</color>
+    <color name="soft_white">#80FFFFFF</color>
 </resources>

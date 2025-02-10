@@ -1,9 +1,12 @@
-package com.example.yumlyst.ui.signupscrean.presenter;
+package com.example.yumlyst.ui.authentecation.signupscrean.presenter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Patterns;
 
-import com.example.yumlyst.ui.signupscrean.view.ISignView;
+import com.example.yumlyst.ui.UserCashing;
+import com.example.yumlyst.ui.authentecation.signupscrean.view.ISignView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -12,10 +15,15 @@ public class SignUpPresenter {
 
     private final FirebaseAuth auth;
     private ISignView view;
+    SharedPreferences sharedPrefUser;
+    private static UserCashing userCashing;
 
-    public SignUpPresenter(ISignView view) {
+
+    public SignUpPresenter(ISignView view , Context context) {
         auth = FirebaseAuth.getInstance();
         this.view=view;
+        userCashing = UserCashing.getInstance(context);;
+
     }
 
     public void signUp(String name, String email, String password, String confirmPassword) {
@@ -26,7 +34,6 @@ public class SignUpPresenter {
                 .addOnSuccessListener(authResult -> {
                     FirebaseUser user = authResult.getUser();
                     if (user != null) {
-                        // Update Firebase User Profile with Display Name
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(name)
                                 .build();
@@ -34,6 +41,8 @@ public class SignUpPresenter {
                         user.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
+                                        //cahes user in shared pref
+                                        userCashing.cacheUser(name, email);
                                         view.navigateToHome();
                                     } else {
                                         view.showError(task.getException().getMessage());
@@ -70,5 +79,7 @@ public class SignUpPresenter {
 
         return true;
     }
+
+
 
 }

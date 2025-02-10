@@ -1,4 +1,4 @@
-package com.example.yumlyst.ui.loginscrean.view;
+package com.example.yumlyst.ui.authentecation.loginscrean.view;
 
 import android.content.Intent;
 

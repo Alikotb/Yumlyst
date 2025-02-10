@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_splach_to_firstScreen"
             app:destination="@id/firstScreen" />
+        <action
+            android:id="@+id/action_splach_to_home2"
+            app:destination="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/firstScreen"
@@ -25,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="com.example.yumlyst.ui.loginscrean.view.Login"
+        android:name="com.example.yumlyst.ui.authentecation.loginscrean.view.Login"
         android:label="Login" >
         <action
             android:id="@+id/action_login_to_signUp"
@@ -36,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUp"
-        android:name="com.example.yumlyst.ui.signupscrean.view.SignUp"
+        android:name="com.example.yumlyst.ui.authentecation.signupscrean.view.SignUp"
         android:label="SignUp" >
         <action
             android:id="@+id/action_signUp_to_login"
@@ -59,7 +62,7 @@
         android:label="Favorite" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.yumlyst.ui.profilescrean.view.Profile"
+        android:name="com.example.yumlyst.ui.authentecation.profilescrean.view.Profile"
         android:label="Profile" >
         <action
             android:id="@+id/action_profile_to_favorite"

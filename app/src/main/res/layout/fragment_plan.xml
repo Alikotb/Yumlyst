@@ -19,20 +19,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/_plan_page_constraint_layout"
+            android:id="@+id/_ingredient_page"
             android:layout_marginTop="32dp">
 
-            <ImageButton
-                android:id="@+id/back_button"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/baseline_arrow_back_ios_24"
-                android:layout_margin="16dp"
-                android:contentDescription="@string/profile_page"
-                app:shapeAppearanceOverlay="@style/CircularImageView"
-                app:layout_constraintTop_toTopOf="@+id/_plan_page_constraint_layout"
-                app:layout_constraintStart_toStartOf="@+id/_plan_page_constraint_layout"/>
-            <ImageView
+             <ImageView
                 android:id="@+id/logo_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -40,8 +30,10 @@
                 android:layout_margin="16dp"
                 android:contentDescription="@string/profile_page"
                 app:shapeAppearanceOverlay="@style/CircularImageView"
-                app:layout_constraintTop_toTopOf="@+id/_plan_page_constraint_layout"
-                app:layout_constraintEnd_toEndOf="@+id/_plan_page_constraint_layout"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 />
 
 
             <androidx.appcompat.widget.AppCompatTextView

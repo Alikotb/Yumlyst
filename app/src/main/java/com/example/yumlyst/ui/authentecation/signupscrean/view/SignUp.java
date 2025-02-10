@@ -1,4 +1,4 @@
-package com.example.yumlyst.ui.signupscrean.view;
+package com.example.yumlyst.ui.authentecation.signupscrean.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.example.yumlyst.R;
 import com.example.yumlyst.ui.OnclickListneres;
-import com.example.yumlyst.ui.signupscrean.presenter.SignUpPresenter;
+import com.example.yumlyst.ui.authentecation.signupscrean.presenter.SignUpPresenter;
 
 public class SignUp extends Fragment implements OnclickListneres, ISignView {
 
@@ -30,7 +30,7 @@ public class SignUp extends Fragment implements OnclickListneres, ISignView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        signUpPresenter = new SignUpPresenter(this);
+        signUpPresenter = new SignUpPresenter(this,requireContext());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.yumlyst.ui.loginscrean.view;
+package com.example.yumlyst.ui.authentecation.loginscrean.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.yumlyst.R;
-import com.example.yumlyst.ui.loginscrean.presenter.LoginPresenter;
+import com.example.yumlyst.ui.authentecation.loginscrean.presenter.LoginPresenter;
 
 public class Login extends Fragment implements ILoginView {
 

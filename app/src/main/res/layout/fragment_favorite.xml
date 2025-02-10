@@ -44,7 +44,7 @@
         android:layout_marginBottom="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:reverseLayout="false"
-        tools:listitem="@layout/category_card"
+        tools:listitem="@layout/meal_card"
         app:layout_constraintTop_toBottomOf="@id/Favouritestxt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

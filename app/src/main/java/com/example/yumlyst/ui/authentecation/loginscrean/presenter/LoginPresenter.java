@@ -1,11 +1,13 @@
-package com.example.yumlyst.ui.loginscrean.presenter;
+package com.example.yumlyst.ui.authentecation.loginscrean.presenter;
 
 import android.content.Context;
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import com.example.yumlyst.R;
-import com.example.yumlyst.ui.loginscrean.view.Login;
-import com.example.yumlyst.ui.loginscrean.view.ILoginView;
+import com.example.yumlyst.ui.UserCashing;
+import com.example.yumlyst.ui.authentecation.loginscrean.view.Login;
+import com.example.yumlyst.ui.authentecation.loginscrean.view.ILoginView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -18,11 +20,12 @@ public class LoginPresenter {
     private final FirebaseAuth auth;
     private final ILoginView view;
     private final GoogleSignInClient googleSignInClient;
+    private static UserCashing userCashing;
 
     public LoginPresenter(@NonNull ILoginView view, @NonNull Context context) {
         this.auth = FirebaseAuth.getInstance();
         this.view = view;
-
+        userCashing = UserCashing.getInstance(context);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(context.getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -36,6 +39,7 @@ public class LoginPresenter {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        userCashing.cacheUser(email,auth.getCurrentUser().getDisplayName());
                         view.navigateToHome();
                     } else {
                         view.showError(task.getException() != null ? task.getException().getMessage() : "Login failed.");
@@ -56,6 +60,8 @@ public class LoginPresenter {
                     if (task.isSuccessful() && task.getResult() != null) {
                         String idToken = task.getResult().getIdToken();
                         firebaseAuthWithGoogle(idToken);
+                        //cahes user in shared pref
+
                     } else {
                         view.showError("Google Sign-In failed!");
                     }
@@ -67,6 +73,7 @@ public class LoginPresenter {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        userCashing.cacheUser(auth.getCurrentUser().getDisplayName(),auth.getCurrentUser().getEmail());
                         view.navigateToHome();
                     } else {
                         view.showError(task.getException() != null ? task.getException().getMessage() : "Google Sign-In failed.");
@@ -85,4 +92,7 @@ public class LoginPresenter {
         }
         return true;
     }
+
+
+
 }

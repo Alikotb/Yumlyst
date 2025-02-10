@@ -1,4 +1,4 @@
-package com.example.yumlyst.ui.profilescrean.view;
+package com.example.yumlyst.ui.authentecation.profilescrean.view;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
 import com.example.yumlyst.ui.OnclickListneres;
-import com.example.yumlyst.ui.profilescrean.presenter.ProfilePresenter;
+import com.example.yumlyst.ui.authentecation.profilescrean.presenter.ProfilePresenter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
@@ -25,7 +25,6 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
     private ShapeableImageView profileImage;
     private MaterialAutoCompleteTextView username;
     private MaterialAutoCompleteTextView email;
-    private MaterialButton favouritesButton;
     private MaterialButton logoutButton;
     private ProfilePresenter profilePresenter;
 
@@ -59,14 +58,12 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
         profileImage = view.findViewById(R.id.profile_profilepage_image);
         username = view.findViewById(R.id.username);
         email = view.findViewById(R.id.email);
-        favouritesButton = view.findViewById(R.id.Favourites_button);
         logoutButton = view.findViewById(R.id.logout_button);
     }
 
     @Override
     public void setListeners() {
         backButton.setOnClickListener(v -> navigateToHome());
-        favouritesButton.setOnClickListener(v -> navigateFavorit());
         logoutButton.setOnClickListener(v -> profilePresenter.handleLogout());
     }
 
@@ -89,8 +86,5 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
         Navigation.findNavController(requireView()).navigate(R.id.action_profile_to_home2);
     }
 
-    @Override
-    public void navigateFavorit() {
-        Navigation.findNavController(requireView()).navigate(R.id.action_profile_to_favorite);
-    }
+
 }

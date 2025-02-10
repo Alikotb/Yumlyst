@@ -1,7 +1,6 @@
-package com.example.yumlyst.ui.profilescrean.view;
+package com.example.yumlyst.ui.authentecation.profilescrean.view;
 
 public interface IProfileView {
     void fetchUserData();
     void navigateToHome();
-    void navigateFavorit();
 }

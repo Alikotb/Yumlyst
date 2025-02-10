@@ -1,4 +1,4 @@
-package com.example.yumlyst.ui.signupscrean.view;
+package com.example.yumlyst.ui.authentecation.signupscrean.view;
 
 public interface ISignView {
     void showError(String msg);
