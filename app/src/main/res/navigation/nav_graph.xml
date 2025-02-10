@@ -10,10 +10,14 @@
         android:label="Splach" >
         <action
             android:id="@+id/action_splach_to_firstScreen"
-            app:destination="@id/firstScreen" />
+            app:destination="@id/firstScreen"
+            app:popUpTo="@id/splach"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splach_to_home2"
-            app:destination="@id/home2" />
+            app:destination="@id/home2"
+            app:popUpTo="@id/splach"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/firstScreen"
@@ -42,9 +46,6 @@
         android:name="com.example.yumlyst.ui.authentecation.signupscrean.view.SignUp"
         android:label="SignUp" >
         <action
-            android:id="@+id/action_signUp_to_login"
-            app:destination="@id/login" />
-        <action
             android:id="@+id/action_signUp_to_home22"
             app:destination="@id/home2" />
     </fragment>
@@ -55,6 +56,12 @@
         <action
             android:id="@+id/action_home2_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_home2_to_detailsFrag"
+            app:destination="@id/detailsFrag" />
+        <action
+            android:id="@+id/action_home2_to_searchFrag"
+            app:destination="@id/searchFrag" />
     </fragment>
     <fragment
         android:id="@+id/favorite"
@@ -65,14 +72,23 @@
         android:name="com.example.yumlyst.ui.authentecation.profilescrean.view.Profile"
         android:label="Profile" >
         <action
-            android:id="@+id/action_profile_to_favorite"
-            app:destination="@id/favorite" />
-        <action
-            android:id="@+id/action_profile_to_home2"
-            app:destination="@id/home2" />
+            android:id="@+id/action_profile_to_firstScreen"
+            app:destination="@id/firstScreen" />
     </fragment>
     <fragment
         android:id="@+id/plan"
         android:name="com.example.yumlyst.ui.planscrean.view.Plan"
         android:label="Plan" />
+    <fragment
+        android:id="@+id/detailsFrag"
+        android:name="com.example.yumlyst.ui.mealdetails.view.DetailsFrag"
+        android:label="DetailsFrag" >
+        <action
+            android:id="@+id/action_detailsFrag_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFrag"
+        android:name="com.example.yumlyst.ui.SearchFrag"
+        android:label="SearchFrag" />
 </navigation>

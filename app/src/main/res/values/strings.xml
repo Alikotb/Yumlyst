@@ -39,4 +39,5 @@
     <string name="default_web_client_id">159284341777-aqipoo4pjbr2f8idcgoffp1q30olukpv.apps.googleusercontent.com</string>
     <string name="area">Area</string>
     <string name="dealymealcategory">DealyMealCategory</string>
+    <string name="profile">Profile</string>
 </resources>

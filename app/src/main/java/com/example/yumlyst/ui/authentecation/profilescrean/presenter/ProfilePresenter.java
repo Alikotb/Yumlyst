@@ -56,7 +56,12 @@ public class ProfilePresenter {
 
     public void handleLogout() {
         logout();
-        view.navigateToHome();
+        view.navigateToHomeScreen();
+
+
+    }
+    public void handleFetchUserData() {
+        view.fetchUserData();
     }
 }
 

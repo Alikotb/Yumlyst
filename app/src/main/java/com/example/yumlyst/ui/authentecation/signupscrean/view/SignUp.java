@@ -19,7 +19,7 @@ import com.example.yumlyst.ui.authentecation.signupscrean.presenter.SignUpPresen
 
 public class SignUp extends Fragment implements OnclickListneres, ISignView {
 
-    private Button signUpBtn, loginBtn;
+    private Button signUpBtn;
     private EditText edtEmail, edtPassword, edtUsername, edtConfirmPassword;
     private SignUpPresenter signUpPresenter;
 
@@ -49,14 +49,11 @@ public class SignUp extends Fragment implements OnclickListneres, ISignView {
     public void setListeners() {
         signUpBtn.setOnClickListener(this::handleSignUp);
 
-        loginBtn.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_signUp_to_login)
-        );
+
     }
 
     private void findById(View view) {
         signUpBtn = view.findViewById(R.id.signUp_button);
-        loginBtn = view.findViewById(R.id.have_account_button);
         edtEmail = view.findViewById(R.id.edtEmail);
         edtPassword = view.findViewById(R.id.edtpassword);
         edtUsername = view.findViewById(R.id.edtUserName);

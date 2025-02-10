@@ -21,7 +21,6 @@ import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 public class Profile extends Fragment implements OnclickListneres, IProfileView {
 
-    private ImageButton backButton;
     private ShapeableImageView profileImage;
     private MaterialAutoCompleteTextView username;
     private MaterialAutoCompleteTextView email;
@@ -47,14 +46,13 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.hideNavigationBottom();
+        mainActivity.showNavigationBottom();
         findViews(view);
         setListeners();
         profilePresenter.handleFetchUserData();
     }
 
     private void findViews(View view) {
-        backButton = view.findViewById(R.id.back_button);
         profileImage = view.findViewById(R.id.profile_profilepage_image);
         username = view.findViewById(R.id.username);
         email = view.findViewById(R.id.email);
@@ -63,7 +61,6 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
 
     @Override
     public void setListeners() {
-        backButton.setOnClickListener(v -> navigateToHome());
         logoutButton.setOnClickListener(v -> profilePresenter.handleLogout());
     }
 
@@ -82,8 +79,8 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
     }
 
     @Override
-    public void navigateToHome() {
-        Navigation.findNavController(requireView()).navigate(R.id.action_profile_to_home2);
+    public void navigateToHomeScreen() {
+        Navigation.findNavController(requireView()).navigate(R.id.action_profile_to_firstScreen);
     }
 
 
