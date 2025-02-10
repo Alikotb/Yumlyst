@@ -1,12 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Home_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whole_app_color"
-    android:id="@+id/Home_page"
-    >
+    android:background="@color/whole_app_color">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,11 +15,12 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/_home_page_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/_home_page_constraint_layout"
             android:layout_marginTop="32dp">
 
+            <!-- Profile Image -->
             <ImageButton
                 android:id="@+id/profile_image"
                 android:layout_width="64dp"
@@ -28,22 +29,24 @@
                 android:layout_margin="16dp"
                 android:contentDescription="@string/profile_page"
                 app:shapeAppearanceOverlay="@style/CircularImageView"
-                app:layout_constraintTop_toTopOf="@+id/_home_page_constraint_layout"
-                app:layout_constraintEnd_toEndOf="@+id/_home_page_constraint_layout"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
+            <!-- Welcome Text -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/welcometxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="128dp"
                 android:textSize="18sp"
                 android:textColor="@color/app_color"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="128dp"
+                app:layout_constraintTop_toBottomOf="@id/profile_image"
+                app:layout_constraintStart_toStartOf="parent"/>
 
+            <!-- Search View -->
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
@@ -52,100 +55,101 @@
                 android:iconifiedByDefault="true"
                 android:padding="8dp"
                 android:queryHint="Search here..."
-                app:layout_constraintTop_toBottomOf="@+id/welcometxt"
+                android:background="@drawable/search"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="32dp"
-                android:background="@drawable/search"/>
+                app:layout_constraintTop_toBottomOf="@id/welcometxt"/>
 
+            <!-- Daily Meal Text -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dailytxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/daily_meal"
-                app:layout_constraintTop_toBottomOf="@+id/searchView"
-                app:layout_constraintStart_toStartOf="@+id/searchView"
-                android:layout_marginStart="16dp"
                 android:textSize="18sp"
                 android:textColor="@color/app_color"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toBottomOf="@id/searchView"
+                app:layout_constraintStart_toStartOf="parent"/>
 
+            <!-- Daily Meals RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Daily_meal_res"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
                 app:reverseLayout="false"
-                app:layout_constraintTop_toBottomOf="@+id/dailytxt"
-                app:layout_constraintStart_toStartOf="@+id/dailytxt"
+                android:layout_marginTop="8dp"
                 tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@id/dailytxt"/>
 
-
+            <!-- Categories Text -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/categorytxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/categories"
-                app:layout_constraintTop_toBottomOf="@+id/Daily_meal_res"
-                app:layout_constraintStart_toStartOf="@+id/dailytxt"
                 android:textSize="18sp"
                 android:textColor="@color/app_color"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/Daily_meal_res"
+                app:layout_constraintStart_toStartOf="@id/dailytxt"/>
 
+            <!-- Categories RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoryResc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                app:layout_constraintTop_toBottomOf="@+id/categorytxt"
-                app:layout_constraintStart_toStartOf="@+id/categorytxt"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
                 tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@id/categorytxt"/>
 
-
+            <!-- Countries Text -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Countriestxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/areas"
-                app:layout_constraintTop_toBottomOf="@+id/categoryResc"
-                app:layout_constraintStart_toStartOf="@+id/categorytxt"
                 android:textSize="18sp"
                 android:textColor="@color/app_color"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/categoryResc"
+                app:layout_constraintStart_toStartOf="@+id/dailytxt"/>
 
+            <!-- Countries RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/CountiesResc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                app:layout_constraintTop_toBottomOf="@+id/Countriestxt"
-                app:layout_constraintStart_toStartOf="@+id/Countriestxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                tools:listitem="@layout/area_card"
+                app:layout_constraintTop_toBottomOf="@id/Countriestxt"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
-
         android:id="@+id/bottom_navigation"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        app:menu="@menu/navigation_button_menu"
         android:background="#3C3C3C"
         app:itemIconTint="@color/white"
         app:itemIconSize="34dp"
         app:itemTextColor="@color/white"
+        app:menu="@menu/navigation_button_menu"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
