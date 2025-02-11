@@ -1,4 +1,4 @@
-package com.example.yumlyst.ui;
+package com.example.yumlyst.ui.authentecation;
 
 import android.content.Context;
 import android.content.SharedPreferences;

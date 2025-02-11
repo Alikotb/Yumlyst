@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Patterns;
 
-import com.example.yumlyst.ui.UserCashing;
+import com.example.yumlyst.ui.authentecation.UserCashing;
 import com.example.yumlyst.ui.authentecation.signupscrean.view.ISignView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

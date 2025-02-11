@@ -1,7 +1,6 @@
 package com.example.yumlyst.model;
 
 public class CategoryDTO {
-
     private String idCategory;
     private String strCategory;
     private String strCategoryThumb;
@@ -38,4 +37,5 @@ public class CategoryDTO {
     public void setStrCategoryDescription(String strCategoryDescription) {
         this.strCategoryDescription = strCategoryDescription;
     }
+
 }
