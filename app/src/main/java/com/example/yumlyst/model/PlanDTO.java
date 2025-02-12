@@ -1,14 +1,15 @@
 package com.example.yumlyst.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PlanDTO {
+public class PlanDTO implements Serializable {
     private String day;
     private List<String> meals;
     private String userId;
     private String planId;
 
-    public PlanDTO( ) {
+    public PlanDTO() {
     }
 
     public PlanDTO(String day, List<String> meals, String userId, String planId) {

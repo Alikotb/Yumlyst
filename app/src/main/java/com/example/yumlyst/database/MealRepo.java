@@ -1,10 +1,8 @@
-package com.example.yumlyst;
+package com.example.yumlyst.database;
 
-import androidx.lifecycle.LiveData;
+import android.util.Log;
 
 import com.example.yumlyst.network.APICall.RemoteDataSource;
-
-import java.util.List;
 
 public class MealRepo {
     RemoteDataSource remoteDataSource;
@@ -33,6 +31,7 @@ public class MealRepo {
     }
     public void getRandomMeal(RemoteDataSource.NetworkCallback callback) {
         remoteDataSource.getRandomMeal(callback);
+        Log.d("TAG", "getRandomMeal: "+ remoteDataSource);
     }
     public void getMealsByArea(String area, RemoteDataSource.NetworkCallback callback) {
         remoteDataSource.getMealsByArea(area, callback);

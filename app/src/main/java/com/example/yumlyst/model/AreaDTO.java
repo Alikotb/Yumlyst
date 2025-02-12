@@ -1,6 +1,8 @@
 package com.example.yumlyst.model;
 
-public class AreaDTO {
+import java.io.Serializable;
+
+public class AreaDTO implements Serializable {
 
     private String strArea;
 

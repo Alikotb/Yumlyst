@@ -1,22 +1,23 @@
 package com.example.yumlyst.ui.homescrean.view;
 
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.yumlyst.MainActivity;
-import com.example.yumlyst.MealRepo;
+import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.R;
-import com.example.yumlyst.adapters.CategoryAdapter;
+import com.example.yumlyst.ui.adapters.AreaAdapter;
+import com.example.yumlyst.ui.adapters.CategoryAdapter;
+import com.example.yumlyst.ui.adapters.DailMealAdapter;
+import com.example.yumlyst.ui.adapters.ImgradientAdapter;
 import com.example.yumlyst.model.AreaDTO;
 import com.example.yumlyst.model.CategoryDTO;
 import com.example.yumlyst.model.IngredientDTO;
@@ -26,6 +27,7 @@ import com.example.yumlyst.ui.OnclickListneres;
 import com.example.yumlyst.ui.homescrean.presenter.HomePresenter;
 import com.example.yumlyst.ui.homescrean.presenter.IHomePresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,9 +39,11 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     RecyclerView Daily_meal_res;
     RecyclerView categoryResc;
     RecyclerView CountiesResc;
+    RecyclerView ingredientsResc;
     String searchText;
-
+    DailMealAdapter randomMealAdapter;
     IHomePresenter homePresenter;
+
     public Home() {
         // Required empty public constructor
     }
@@ -48,7 +52,7 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homePresenter = new HomePresenter(this, MealRepo.getInstance(RemoteDataSource.getInstance()));
-
+        randomMealAdapter = new DailMealAdapter(new ArrayList<>());
 
     }
 
@@ -68,6 +72,7 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         mainActivity.showNavigationBottom();
         getDataFromRemot();
 
+
     }
 
     private void getDataFromRemot() {
@@ -79,21 +84,23 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
     @Override
     public void setListeners() {
-        profile_image.setOnClickListener(v->{
+        profile_image.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_home2_to_profile);
         });
-        searchView.setOnClickListener(v->{
-             searchText = searchView.getQuery().toString();
+        searchView.setOnClickListener(v -> {
+            searchText = searchView.getQuery().toString();
         });
 
 
     }
+
     private void findById() {
         profile_image = getActivity().findViewById(R.id.profile_image);
         searchView = getActivity().findViewById(R.id.searchView);
         Daily_meal_res = getActivity().findViewById(R.id.Daily_meal_res);
         categoryResc = getActivity().findViewById(R.id.categoryResc);
         CountiesResc = getActivity().findViewById(R.id.CountiesResc);
+        ingredientsResc = getActivity().findViewById(R.id.ingradientResc);
 
     }
 
@@ -106,22 +113,29 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
     @Override
     public void showAreas(List<AreaDTO> areas) {
-//        CategoryAdapter categoryAdapter = new CategoryAdapter(areas);
-//        CountiesResc.setAdapter(categoryAdapter);
+        AreaAdapter areaAdapter = new AreaAdapter(areas);
+        CountiesResc.setAdapter(areaAdapter);
     }
 
     @Override
     public void showIngredients(List<IngredientDTO> ingredients) {
-//        IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredients, this);
-//        Daily_meal_res.setAdapter(ingredientAdapter);
+        ImgradientAdapter ingredientAdapter = new ImgradientAdapter(ingredients);
+        ingredientsResc.setAdapter(ingredientAdapter);
 
     }
 
     @Override
     public void showRandomMeal(MealDTO randomMeal) {
-//        RandomMealAdapter randomMealAdapter = new RandomMealAdapter(randomMeal, this);
-//        Daily_meal_res.setAdapter(randomMealAdapter);
+        List<MealDTO> randomMeals = new ArrayList<>();
+        randomMeals.add(randomMeal);
+        randomMeals.add(randomMeal);
+        randomMeals.add(randomMeal);
 
+        randomMealAdapter = new DailMealAdapter(randomMeals);
+        Daily_meal_res.setAdapter(randomMealAdapter);
+        randomMealAdapter.setOnitemclick(v -> {
+            navigateToMealDetails(v);
+        });
 
     }
 
@@ -131,4 +145,15 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 //        textView.setText(message);
 
     }
+
+    @Override
+    public void navigateToMealDetails(MealDTO meal) {
+        if (meal == null) {
+            return;
+        }
+        HomeDirections.ActionHome2ToDetailsFrag action =
+                HomeDirections.actionHome2ToDetailsFrag(meal);
+        Navigation.findNavController(getView()).navigate(action);
+    }
+
 }

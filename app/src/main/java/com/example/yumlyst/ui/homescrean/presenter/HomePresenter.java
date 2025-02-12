@@ -1,17 +1,14 @@
 package com.example.yumlyst.ui.homescrean.presenter;
 
 
-import android.content.Context;
+import android.util.Log;
 
-import com.example.yumlyst.MealRepo;
-import com.example.yumlyst.R;
-import com.example.yumlyst.model.MealDTO;
+import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.model.responsemodel.AreasResponse;
 import com.example.yumlyst.model.responsemodel.CategoriesResponse;
 import com.example.yumlyst.model.responsemodel.IngredientsResponse;
 import com.example.yumlyst.model.responsemodel.MealResponse;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
-import com.example.yumlyst.network.APICall.RetofitGetter;
 import com.example.yumlyst.ui.homescrean.view.IHomeView;
 
 public class HomePresenter implements IHomePresenter, RemoteDataSource.NetworkCallback {
@@ -41,6 +38,7 @@ public class HomePresenter implements IHomePresenter, RemoteDataSource.NetworkCa
     @Override
     public void getRandomMeal() {
         mealRepo.getRandomMeal(this);
+        Log.d("TAG", "getRandomMeal: ");
     }
 
     @Override
@@ -60,9 +58,9 @@ public class HomePresenter implements IHomePresenter, RemoteDataSource.NetworkCa
         } else if (response instanceof IngredientsResponse) {
             IngredientsResponse ingredientsResponse = (IngredientsResponse) response;
             homeView.showIngredients(ingredientsResponse.getMeals());
-        } else if (response instanceof MealDTO) {
-            MealDTO mealDTO = (MealDTO) response;
-            homeView.showRandomMeal(mealDTO);
+        } else if (response instanceof MealResponse) {
+            MealResponse mealDTO = (MealResponse) response;
+            homeView.showRandomMeal(mealDTO.getMeals().get(0));
         }
 
     }

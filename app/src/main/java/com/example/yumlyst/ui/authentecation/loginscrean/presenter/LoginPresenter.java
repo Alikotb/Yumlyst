@@ -4,10 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
+
 import com.example.yumlyst.R;
 import com.example.yumlyst.ui.authentecation.UserCashing;
-import com.example.yumlyst.ui.authentecation.loginscrean.view.Login;
 import com.example.yumlyst.ui.authentecation.loginscrean.view.ILoginView;
+import com.example.yumlyst.ui.authentecation.loginscrean.view.Login;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -17,10 +18,10 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginPresenter {
 
+    private static UserCashing userCashing;
     private final FirebaseAuth auth;
     private final ILoginView view;
     private final GoogleSignInClient googleSignInClient;
-    private static UserCashing userCashing;
 
     public LoginPresenter(@NonNull ILoginView view, @NonNull Context context) {
         this.auth = FirebaseAuth.getInstance();
@@ -39,7 +40,7 @@ public class LoginPresenter {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        userCashing.cacheUser(email,auth.getCurrentUser().getDisplayName());
+                        userCashing.cacheUser(email, auth.getCurrentUser().getDisplayName());
                         view.navigateToHome();
                     } else {
                         view.showError(task.getException() != null ? task.getException().getMessage() : "Login failed.");
@@ -73,7 +74,7 @@ public class LoginPresenter {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        userCashing.cacheUser(auth.getCurrentUser().getDisplayName(),auth.getCurrentUser().getEmail());
+                        userCashing.cacheUser(auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getEmail());
                         view.navigateToHome();
                     } else {
                         view.showError(task.getException() != null ? task.getException().getMessage() : "Google Sign-In failed.");
@@ -92,7 +93,6 @@ public class LoginPresenter {
         }
         return true;
     }
-
 
 
 }

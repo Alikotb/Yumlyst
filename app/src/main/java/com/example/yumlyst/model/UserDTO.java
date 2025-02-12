@@ -1,6 +1,8 @@
 package com.example.yumlyst.model;
 
-public class UserDTO {
+import java.io.Serializable;
+
+public class UserDTO implements Serializable {
     String username;
     String email;
     String password;
@@ -15,15 +17,15 @@ public class UserDTO {
         this.photoUrl = photoUrl;
     }
 
+    public UserDTO() {
+    }
+
     public String getPhotoUrl() {
         return photoUrl;
     }
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
-    }
-
-    public UserDTO() {
     }
 
     public String getUsername() {
