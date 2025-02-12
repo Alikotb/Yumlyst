@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.R;
@@ -26,6 +27,7 @@ import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.ui.OnclickListneres;
 import com.example.yumlyst.ui.homescrean.presenter.HomePresenter;
 import com.example.yumlyst.ui.homescrean.presenter.IHomePresenter;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ import java.util.List;
 public class Home extends Fragment implements OnclickListneres, IHomeView {
 
 
-    ImageButton profile_image;
+    ShapeableImageView profile_image;
     SearchView searchView;
     RecyclerView Daily_meal_res;
     RecyclerView categoryResc;
@@ -80,6 +82,7 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         homePresenter.getAreas();
         homePresenter.getIngredients();
         homePresenter.getRandomMeal();
+        homePresenter.getPhotoUrl();
     }
 
     @Override
@@ -125,11 +128,7 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     }
 
     @Override
-    public void showRandomMeal(MealDTO randomMeal) {
-        List<MealDTO> randomMeals = new ArrayList<>();
-        randomMeals.add(randomMeal);
-        randomMeals.add(randomMeal);
-        randomMeals.add(randomMeal);
+    public void showRandomMeal(List<MealDTO> randomMeals) {
 
         randomMealAdapter = new DailMealAdapter(randomMeals);
         Daily_meal_res.setAdapter(randomMealAdapter);
@@ -140,11 +139,17 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     }
 
     @Override
-    public void showError(String message) {
-//        AppCompatTextView textView = getActivity().findViewById(R.id.error_text);
-//        textView.setText(message);
-
+    public void showPhotoUrl(String str) {
+        if (str!= null) {
+            Glide.with(this)
+                    .load(str)
+                    .placeholder(R.drawable.profile) // Optional: Placeholder image
+                    .into(profile_image);
+        }
     }
+
+
+
 
     @Override
     public void navigateToMealDetails(MealDTO meal) {
