@@ -14,9 +14,9 @@ public interface IHomeView {
 
     void showIngredients(List<IngredientDTO> ingredients);
 
-    void showRandomMeal(MealDTO randomMeal);
+    void showRandomMeal(List<MealDTO> randomMeal);
+    void showPhotoUrl(String str);
 
-    void showError(String message);
 
     void navigateToMealDetails(MealDTO meal);
 }

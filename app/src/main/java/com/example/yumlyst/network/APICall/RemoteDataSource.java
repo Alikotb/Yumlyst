@@ -8,6 +8,8 @@ import com.example.yumlyst.model.responsemodel.CategoriesResponse;
 import com.example.yumlyst.model.responsemodel.IngredientsResponse;
 import com.example.yumlyst.model.responsemodel.MealResponse;
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +26,7 @@ public class RemoteDataSource {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
         service = retrofit.create(RetofitGetter.class);
     }
@@ -35,7 +38,7 @@ public class RemoteDataSource {
         return instance;
     }
 
-    private <T> void makeRequest(Call<T> call, NetworkCallback<T> callback) {
+    /*private <T> void makeRequest(Call<T> call, NetworkCallback<T> callback) {
         call.enqueue(new Callback<T>() {
             @Override
             public void onResponse(Call<T> call, Response<T> response) {
@@ -51,43 +54,40 @@ public class RemoteDataSource {
                 callback.onFailure(t.getMessage());
             }
         });
+    }*/
+
+    public Single<CategoriesResponse> getCategories() {
+        return service.getCategories();
     }
 
-    public void getCategories(NetworkCallback<CategoriesResponse> callback) {
-        makeRequest(service.getCategories(), callback);
+    public Single<AreasResponse> getAreas() {
+        return service.getAreas();
     }
 
-    public void getAreas(NetworkCallback<AreasResponse> callback) {
-        makeRequest(service.getAreas(), callback);
+    public Single<IngredientsResponse> getIngredients() {
+        return service.getIngredients();
     }
 
-    public void getIngredients(NetworkCallback<IngredientsResponse> callback) {
-        makeRequest(service.getIngredients(), callback);
-    }
-
-    public void getRandomMeal(NetworkCallback<MealResponse> callback) {
-        makeRequest(service.getRandomMeal(), callback);
-        Log.d("TAG", "getRandomMeal remot : "+ service);
+    public  Single<MealResponse> getRandomMeal() {
+        return service.getRandomMeal();
+        //Log.d("TAG", "getRandomMeal remot : "+ service);
     }
 
 
-    public void getMealsByArea(String area, NetworkCallback<MealResponse> callback) {
-        makeRequest(service.getMealsByArea(area), callback);
+    public Single<MealResponse> getMealsByArea(String area) {
+       return service.getMealsByArea(area);
     }
 
-    public void getMealsByCategory(String category, NetworkCallback<MealResponse> callback) {
-        makeRequest(service.getMealsByCategory(category), callback);
+    public Single<MealResponse>  getMealsByCategory(String category) {
+       return service.getMealsByCategory(category);
     }
 
-    public void getMealsByIngredient(String ingredient, NetworkCallback<MealResponse> callback) {
-        makeRequest(service.getMealsByIngredient(ingredient), callback);
+    public Single<MealResponse>  getMealsByIngredient(String ingredient) {
+       return service.getMealsByIngredient(ingredient);
     }
-    public void getMealById(String id, NetworkCallback<MealResponse> callback) {
-        makeRequest(service.getMealById(id), callback);
+    public Single<MealResponse>  getMealById(String id) {
+        return service.getMealById(id);
     }
 
-    public interface NetworkCallback<T> {
-        void onSuccess(T response);
-        void onFailure(String message);
-    }
+
 }

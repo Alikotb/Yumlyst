@@ -2,7 +2,13 @@ package com.example.yumlyst.database;
 
 import android.util.Log;
 
+import com.example.yumlyst.model.responsemodel.AreasResponse;
+import com.example.yumlyst.model.responsemodel.CategoriesResponse;
+import com.example.yumlyst.model.responsemodel.IngredientsResponse;
+import com.example.yumlyst.model.responsemodel.MealResponse;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
+
+import io.reactivex.rxjava3.core.Single;
 
 public class MealRepo {
     RemoteDataSource remoteDataSource;
@@ -20,30 +26,30 @@ public class MealRepo {
         }
         return instance;
     }
-    public void getCategories(RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getCategories(callback);
+    public Single<CategoriesResponse> getCategories() {
+        return remoteDataSource.getCategories();
     }
-    public void getAreas(RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getAreas(callback);
+    public Single<AreasResponse> getAreas() {
+        return remoteDataSource.getAreas();
     }
-    public void getIngredients(RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getIngredients(callback);
+    public Single<IngredientsResponse> getIngredients() {
+        return remoteDataSource.getIngredients();
     }
-    public void getRandomMeal(RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getRandomMeal(callback);
-        Log.d("TAG", "getRandomMeal: "+ remoteDataSource);
+    public Single<MealResponse> getRandomMeal() {
+        return remoteDataSource.getRandomMeal();
+        //Log.d("TAG", "getRandomMeal: "+ remoteDataSource);
     }
-    public void getMealsByArea(String area, RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getMealsByArea(area, callback);
+    public Single<MealResponse> getMealsByArea(String area) {
+       return remoteDataSource.getMealsByArea(area);
     }
-    public void getMealsByCategory(String category, RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getMealsByCategory(category, callback);
+    public Single<MealResponse> getMealsByCategory(String category) {
+        return remoteDataSource.getMealsByCategory(category);
     }
-    public void getMealsByIngredient(String ingredient, RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getMealsByIngredient(ingredient, callback);
+    public Single<MealResponse> getMealsByIngredient(String ingredient) {
+       return remoteDataSource.getMealsByIngredient(ingredient);
     }
-    public void getMealById(String id, RemoteDataSource.NetworkCallback callback) {
-        remoteDataSource.getMealById(id, callback);
+    public Single<MealResponse> getMealById(String id) {
+       return remoteDataSource.getMealById(id);
     }
 
 

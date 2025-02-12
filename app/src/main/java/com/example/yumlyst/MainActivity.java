@@ -26,17 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
-        RemoteDataSource.getInstance().getCategories(new RemoteDataSource.NetworkCallback<CategoriesResponse>() {
-            @Override
-            public void onSuccess(CategoriesResponse response) {
-                Log.i("test", "Categories received: " + response.getCategories().size());
-            }
 
-            @Override
-            public void onFailure(String message) {
-                Log.e("test", "API Error: " + message);
-            }
-        });
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         NavController navController = navHostFragment.getNavController();

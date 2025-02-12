@@ -8,6 +8,7 @@ public interface IHomePresenter {
     void getIngredients();
 
     void getRandomMeal();
+    void getPhotoUrl();
 
-    void getMealsByArea(String area);
+
 }
