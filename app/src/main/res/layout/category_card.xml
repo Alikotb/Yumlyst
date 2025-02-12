@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/category_card"
     android:layout_width="wrap_content"
@@ -12,45 +11,44 @@
 
 
     <!--        &lt;!&ndash; CardView for the Image (to round corners) &ndash;&gt;-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/category_image_card"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:elevation="16dp"
-            app:cardCornerRadius="100dp"
-            android:backgroundTint="@color/app_color"
-            app:cardElevation="12dp"
-            app:layout_constraintHorizontal_bias=".3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ingredient_image_card"
+        android:layout_width="0dp"
+        android:layout_height="127dp"
+        android:backgroundTint="@color/app_color"
+        android:elevation="16dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="12dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/category_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/beef"/>
+        <ImageView
+            android:id="@+id/ingredient_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/beef" />
 
 
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-        <!-- Food Name -->
-        <TextView
-            android:id="@+id/category_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/app_color"
-            android:paddingTop="4dp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/category_image_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+    <!-- Food Name -->
+    <TextView
+        android:id="@+id/category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:text="@string/category"
+        android:textColor="@color/app_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ingredient_image_card" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

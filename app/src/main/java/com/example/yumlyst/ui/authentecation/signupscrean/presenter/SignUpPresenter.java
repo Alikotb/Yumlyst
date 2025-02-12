@@ -13,16 +13,17 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class SignUpPresenter {
 
-    private final FirebaseAuth auth;
-    private ISignView view;
-    SharedPreferences sharedPrefUser;
     private static UserCashing userCashing;
+    private final FirebaseAuth auth;
+    SharedPreferences sharedPrefUser;
+    private ISignView view;
 
 
-    public SignUpPresenter(ISignView view , Context context) {
+    public SignUpPresenter(ISignView view, Context context) {
         auth = FirebaseAuth.getInstance();
-        this.view=view;
-        userCashing = UserCashing.getInstance(context);;
+        this.view = view;
+        userCashing = UserCashing.getInstance(context);
+        ;
 
     }
 
@@ -54,6 +55,7 @@ public class SignUpPresenter {
                 })
                 .addOnFailureListener(e -> view.showError(e.getMessage()));
     }
+
     private boolean validateInputs(String username, String email, String password, String confirmPassword) {
 
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -79,7 +81,6 @@ public class SignUpPresenter {
 
         return true;
     }
-
 
 
 }

@@ -86,6 +86,9 @@
         <action
             android:id="@+id/action_detailsFrag_to_home2"
             app:destination="@id/home2" />
+        <argument
+            android:name="MealDetails"
+            app:argType="com.example.yumlyst.model.MealDTO" />
     </fragment>
     <fragment
         android:id="@+id/searchFrag"

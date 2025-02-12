@@ -1,5 +1,7 @@
 package com.example.yumlyst.network.APICall;
 
+import android.util.Log;
+
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.model.responsemodel.AreasResponse;
 import com.example.yumlyst.model.responsemodel.CategoriesResponse;
@@ -63,8 +65,9 @@ public class RemoteDataSource {
         makeRequest(service.getIngredients(), callback);
     }
 
-    public void getRandomMeal(NetworkCallback<MealDTO> callback) {
+    public void getRandomMeal(NetworkCallback<MealResponse> callback) {
         makeRequest(service.getRandomMeal(), callback);
+        Log.d("TAG", "getRandomMeal remot : "+ service);
     }
 
 
@@ -79,7 +82,7 @@ public class RemoteDataSource {
     public void getMealsByIngredient(String ingredient, NetworkCallback<MealResponse> callback) {
         makeRequest(service.getMealsByIngredient(ingredient), callback);
     }
-    public void getMealById(String id, NetworkCallback<MealDTO> callback) {
+    public void getMealById(String id, NetworkCallback<MealResponse> callback) {
         makeRequest(service.getMealById(id), callback);
     }
 

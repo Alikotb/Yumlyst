@@ -9,8 +9,14 @@ import java.util.List;
 
 public interface IHomeView {
     void showCategories(List<CategoryDTO> categories);
+
     void showAreas(List<AreaDTO> areas);
+
     void showIngredients(List<IngredientDTO> ingredients);
+
     void showRandomMeal(MealDTO randomMeal);
+
     void showError(String message);
+
+    void navigateToMealDetails(MealDTO meal);
 }

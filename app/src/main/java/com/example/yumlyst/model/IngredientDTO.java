@@ -1,6 +1,8 @@
 package com.example.yumlyst.model;
 
-public class IngredientDTO {
+import java.io.Serializable;
+
+public class IngredientDTO implements Serializable {
 
     private String idIngredient;
     private String strIngredient;

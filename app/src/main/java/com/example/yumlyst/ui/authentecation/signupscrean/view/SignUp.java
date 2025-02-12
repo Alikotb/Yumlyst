@@ -30,7 +30,7 @@ public class SignUp extends Fragment implements OnclickListneres, ISignView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        signUpPresenter = new SignUpPresenter(this,requireContext());
+        signUpPresenter = new SignUpPresenter(this, requireContext());
     }
 
     @Override

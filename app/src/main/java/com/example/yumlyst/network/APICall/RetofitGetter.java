@@ -2,9 +2,9 @@ package com.example.yumlyst.network.APICall;
 
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.model.responsemodel.CategoriesResponse;
-import com.example.yumlyst.model.responsemodel.MealResponse;
 import com.example.yumlyst.model.responsemodel.AreasResponse;
 import com.example.yumlyst.model.responsemodel.IngredientsResponse;
+import com.example.yumlyst.model.responsemodel.MealResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,11 +22,11 @@ public interface RetofitGetter {
     Call<IngredientsResponse> getIngredients();
 
     @GET("random.php")
-    Call<MealDTO> getRandomMeal();
-;
+    Call<MealResponse> getRandomMeal();
+
 
     @GET("lookup.php")
-    Call<MealDTO> getMealById(@Query("i") String id);
+    Call<MealResponse> getMealById(@Query("i") String id);
 
 
     @GET("filter.php")

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CategoriesResponse {
 
-    private List<CategoryDTO> categories ;
+    private List<CategoryDTO> categories;
 
     public List<CategoryDTO> getCategories() {
         return categories;

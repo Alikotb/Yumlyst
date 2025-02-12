@@ -1,213 +1,243 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/plan_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/plan_page"
-    android:background="@color/whole_app_color"
-    >
+    android:background="@color/whole_app_color">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/_ingredient_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/_ingredient_page"
             android:layout_marginTop="32dp">
 
-             <ImageView
+            <ImageView
                 android:id="@+id/logo_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/logo"
                 android:layout_margin="16dp"
+                android:background="@drawable/logo"
                 android:contentDescription="@string/profile_page"
-                app:shapeAppearanceOverlay="@style/CircularImageView"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintStart_toStartOf="parent"
-                 />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/CircularImageView" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/saturdaytxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/planrectan"
+                android:padding="8dp"
                 android:text="@string/saturday"
-                app:layout_constraintTop_toBottomOf="@+id/logo_image"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@color/app_color"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logo_image" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/saturdayResycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:reverseLayout="false"
-                app:layout_constraintTop_toBottomOf="@+id/saturdaytxt"
                 app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/saturdaytxt"
+                app:reverseLayout="false"
+                tools:listitem="@layout/category_card" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/sundaytxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/planrectan"
+                android:padding="8dp"
                 android:text="@string/sunday"
-                app:layout_constraintTop_toBottomOf="@+id/saturdayResycle"
-                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@color/app_color"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+
+                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
+                app:layout_constraintTop_toBottomOf="@+id/saturdayResycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sundayRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/sundaytxt"
                 app:layout_constraintStart_toStartOf="@+id/sundaytxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/sundaytxt"
+                tools:listitem="@layout/category_card" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/mondaytxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/planrectan"
+                android:padding="8dp"
                 android:text="@string/monday"
-                app:layout_constraintTop_toBottomOf="@+id/sundayRecycle"
-                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@color/app_color"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
+                app:layout_constraintTop_toBottomOf="@+id/sundayRecycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mondayRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/mondaytxt"
                 app:layout_constraintStart_toStartOf="@+id/mondaytxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/mondaytxt"
+                tools:listitem="@layout/category_card" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tuesdaytxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/planrectan"
+                android:padding="8dp"
                 android:text="@string/tuesday"
-                app:layout_constraintTop_toBottomOf="@+id/mondayRecycle"
-                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@color/app_color"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
+                app:layout_constraintTop_toBottomOf="@+id/mondayRecycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tuesdayRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/tuesdaytxt"
                 app:layout_constraintStart_toStartOf="@+id/tuesdaytxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/tuesdaytxt"
+                tools:listitem="@layout/category_card" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/wednesdaytxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/planrectan"
+                android:padding="8dp"
                 android:text="@string/wednesday"
-                app:layout_constraintTop_toBottomOf="@+id/tuesdayRecycle"
-                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@color/app_color"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayRecycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/wednesdayRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/wednesdaytxt"
                 app:layout_constraintStart_toStartOf="@+id/wednesdaytxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/wednesdaytxt"
+                tools:listitem="@layout/category_card" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/thursdtxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/planrectan"
+                android:padding="8dp"
                 android:text="@string/thursday"
-                app:layout_constraintTop_toBottomOf="@+id/wednesdayRecycle"
-                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@color/app_color"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayRecycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/thursRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/thursdtxt"
                 app:layout_constraintStart_toStartOf="@+id/thursdtxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/thursdtxt"
+                tools:listitem="@layout/category_card" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fridaytxt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/planrectan"
+                android:padding="8dp"
                 android:text="@string/friday"
-                app:layout_constraintTop_toBottomOf="@+id/thursRecycle"
-                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
-                android:textSize="18sp"
+                android:textAlignment="center"
                 android:textColor="@color/app_color"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintStart_toStartOf="@+id/saturdaytxt"
+                app:layout_constraintTop_toBottomOf="@+id/thursRecycle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fridayRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/fridaytxt"
                 app:layout_constraintStart_toStartOf="@+id/fridaytxt"
-                tools:listitem="@layout/category_card"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/fridaytxt"
+                tools:listitem="@layout/category_card" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

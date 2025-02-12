@@ -13,13 +13,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ProfilePresenter {
     private final FirebaseAuth auth;
-    private IProfileView view;
     private final GoogleSignInClient googleSignInClient;
     UserCashing userCashing;
+    private IProfileView view;
 
-    public ProfilePresenter(IProfileView view , Context context) {
+    public ProfilePresenter(IProfileView view, Context context) {
         auth = FirebaseAuth.getInstance();
-        this.view=view;
+        this.view = view;
         userCashing = UserCashing.getInstance(context);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -36,9 +36,11 @@ public class ProfilePresenter {
         googleSignInClient.signOut();
 
     }
+
     public boolean isLoggedIn() {
         return auth.getCurrentUser() != null;
     }
+
     public String getUsername() {
         FirebaseUser user = auth.getCurrentUser();
         return (user != null && user.getDisplayName() != null) ? user.getDisplayName() : "Guest";
@@ -60,6 +62,7 @@ public class ProfilePresenter {
 
 
     }
+
     public void handleFetchUserData() {
         view.fetchUserData();
     }

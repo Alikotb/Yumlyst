@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/daily_meal_card"
     android:layout_width="match_parent"
@@ -8,15 +7,14 @@
     android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp"
     android:layout_marginBottom="4dp"
+    android:background="@color/whole_app_color"
     app:cardCornerRadius="22dp"
     app:cardElevation="6dp"
-    android:background="@color/whole_app_color"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <!-- CardView for the Image (to round corners) -->
         <androidx.cardview.widget.CardView
@@ -24,19 +22,19 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:elevation="6dp"
-            app:cardCornerRadius="22dp"
             app:cardBackgroundColor="@android:color/transparent"
-            app:layout_constraintWidth_percent="0.95"
-            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="22dp"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintDimensionRatio="1:1">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.95">
 
             <ImageView
                 android:id="@+id/daily_meal_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"/>
+                android:src="@drawable/ic_launcher_background" />
         </androidx.cardview.widget.CardView>
 
         <!-- Food Category (First text) -->
@@ -44,37 +42,36 @@
             android:id="@+id/meal_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_meal"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/app_color"
-            android:elevation="8dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="64dp"
-            app:layout_constraintStart_toEndOf="@id/mael_image_card"
-            app:layout_constraintTop_toTopOf="@+id/mael_image_card"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/daily_meal"
+            android:textColor="@color/app_color"
+            android:textSize="28sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/mael_image_card"
-            />
+            app:layout_constraintStart_toEndOf="@id/mael_image_card"
+            app:layout_constraintTop_toTopOf="@+id/mael_image_card" />
 
         <!-- Food Name (Second text)Daily_meal_name dealymealcategory -->
         <TextView
             android:id="@+id/meal_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dealymealcategory"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/app_color"
+            android:layout_marginTop="8dp"
             android:elevation="8dp"
+            android:gravity="center"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:gravity="center"
-            android:layout_marginTop="8dp"
+            android:text="@string/dealymealcategory"
+            android:textColor="@color/app_color"
+            android:textSize="22sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/meal_name"
-            app:layout_constraintTop_toBottomOf="@id/meal_name"/>
+            app:layout_constraintTop_toBottomOf="@id/meal_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

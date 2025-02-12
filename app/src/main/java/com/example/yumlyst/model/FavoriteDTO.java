@@ -1,8 +1,9 @@
 package com.example.yumlyst.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class FavoriteDTO {
+public class FavoriteDTO implements Serializable {
     private List<String> meals;
     private String userId;
 

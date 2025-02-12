@@ -1,6 +1,8 @@
 package com.example.yumlyst.model;
 
-public class CategoryDTO {
+import java.io.Serializable;
+
+public class CategoryDTO implements Serializable {
     private String idCategory;
     private String strCategory;
     private String strCategoryThumb;
