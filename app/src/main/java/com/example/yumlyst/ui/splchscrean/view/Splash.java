@@ -18,7 +18,7 @@ import androidx.navigation.Navigation;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
-import com.example.yumlyst.ui.authentecation.UserCashing;
+import com.example.yumlyst.database.UserCashing;
 
 public class Splash extends Fragment {
 

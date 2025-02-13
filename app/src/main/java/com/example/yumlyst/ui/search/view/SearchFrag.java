@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.ui.adapters.SearchAdapter;
 import com.example.yumlyst.ui.homescrean.presenter.HomePresenter;
+import com.example.yumlyst.ui.homescrean.view.HomeDirections;
 import com.example.yumlyst.ui.search.presenter.ISearchPresenter;
 import com.example.yumlyst.ui.search.presenter.SearchPresenter;
 
@@ -76,6 +78,10 @@ public class SearchFrag extends Fragment implements ISearchView {
     public void showMealsByCategory(List<MealDTO> meals) {
         searchAdapter = new SearchAdapter(meals);
         searchResycle.setAdapter(searchAdapter);
+        searchAdapter.setOnitemclick((id) -> {
+            navigateToMealDetails(id);
+
+        });
 
     }
 
@@ -83,6 +89,10 @@ public class SearchFrag extends Fragment implements ISearchView {
     public void showMealsByArea(List<MealDTO> meals) {
         searchAdapter = new SearchAdapter(meals);
         searchResycle.setAdapter(searchAdapter);
+        searchAdapter.setOnitemclick((id) -> {
+            navigateToMealDetails(id);
+
+        });
 
     }
 
@@ -90,15 +100,23 @@ public class SearchFrag extends Fragment implements ISearchView {
     public void showMealsByIngredient(List<MealDTO> meals) {
         searchAdapter = new SearchAdapter(meals);
         searchResycle.setAdapter(searchAdapter);
+        searchAdapter.setOnitemclick((id) -> {
+            navigateToMealDetails(id);
+
+        });
     }
 
-    @Override
-    public void showMealsByName(List<MealDTO> meals) {
 
-    }
 
     @Override
-    public void navigateToMealDetails(MealDTO meal) {
+    public void navigateToMealDetails(String id) {
+        //action_searchFrag_to_detailsFrag
+       /*SearchFragDirections.actionSearchFragToDetailsFrag action =
+                SearchFragDirections.actionHome2ToSearchFrag(type);
+        Navigation.findNavController(getView()).navigate(action);*/
+        SearchFragDirections.ActionSearchFragToDetailsFrag action =
+                SearchFragDirections.actionSearchFragToDetailsFrag(id);
+        Navigation.findNavController(getView()).navigate(action);
 
 
     }

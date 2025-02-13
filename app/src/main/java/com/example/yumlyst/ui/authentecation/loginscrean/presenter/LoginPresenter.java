@@ -6,7 +6,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 
 import com.example.yumlyst.R;
-import com.example.yumlyst.ui.authentecation.UserCashing;
+import com.example.yumlyst.database.UserCashing;
 import com.example.yumlyst.ui.authentecation.loginscrean.view.ILoginView;
 import com.example.yumlyst.ui.authentecation.loginscrean.view.Login;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;

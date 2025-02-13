@@ -140,7 +140,7 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         randomMealAdapter = new DailMealAdapter(randomMeals);
         Daily_meal_res.setAdapter(randomMealAdapter);
         randomMealAdapter.setOnitemclick(v -> {
-            navigateToMealDetails(v);
+            navigateToMealDetails(v.getIdMeal());
         });
 
     }
@@ -157,12 +157,10 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
 
     @Override
-    public void navigateToMealDetails(MealDTO meal) {
-        if (meal == null) {
-            return;
-        }
+    public void navigateToMealDetails(String id) {
+
         HomeDirections.ActionHome2ToDetailsFrag action =
-                HomeDirections.actionHome2ToDetailsFrag(meal);
+                HomeDirections.actionHome2ToDetailsFrag(id);
         Navigation.findNavController(getView()).navigate(action);
     }
 

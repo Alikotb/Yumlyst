@@ -44,10 +44,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MealDTO pdto = dtos.get(position);
+        Log.d("Ali", "onclick 1 on search adapter : "+pdto.getStrMeal()+pdto.getStrCategory()+ pdto.getStrArea());
+
         holder.mealName.setText(pdto.getStrMeal());
         holder.mealCategory.setText(pdto.getStrCategory());
         Glide.with(holder.itemView.getContext()).load(pdto.getStrMealThumb()).placeholder(R.drawable.beef).into(holder.imageView);
 
+        holder.itemView.setOnClickListener(v -> {
+            Log.d("Ali", "onclick on search adapter : "+pdto.getStrMeal()+pdto.getStrCategory()+ pdto.getStrArea());
+                   onitemclick.onclick(pdto.getIdMeal());
+
+        });
 
     }
 
@@ -61,7 +68,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     }
 
     public interface onitemclick {
-        void onclick(String str);
+        void onclick(String id);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

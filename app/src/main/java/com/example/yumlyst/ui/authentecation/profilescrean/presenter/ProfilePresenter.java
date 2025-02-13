@@ -3,7 +3,7 @@ package com.example.yumlyst.ui.authentecation.profilescrean.presenter;
 import android.content.Context;
 
 import com.example.yumlyst.R;
-import com.example.yumlyst.ui.authentecation.UserCashing;
+import com.example.yumlyst.database.UserCashing;
 import com.example.yumlyst.ui.authentecation.profilescrean.view.IProfileView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
