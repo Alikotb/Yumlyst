@@ -42,6 +42,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         CategoryDTO pdto = dtos.get(position);
         Glide.with(holder.itemView.getContext()).load(pdto.getStrCategoryThumb()).placeholder(R.drawable.beef).into(holder.imageView);
         holder.textView.setText(pdto.getStrCategory());
+        holder.itemView.setOnClickListener(v -> {
+            onitemclick.onclick(pdto);
+        });
 
 
     }

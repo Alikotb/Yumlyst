@@ -92,6 +92,13 @@
     </fragment>
     <fragment
         android:id="@+id/searchFrag"
-        android:name="com.example.yumlyst.ui.SearchFrag"
-        android:label="SearchFrag" />
+        android:name="com.example.yumlyst.ui.search.view.SearchFrag"
+        android:label="SearchFrag" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchFrag_to_detailsFrag"
+            app:destination="@id/detailsFrag" />
+    </fragment>
 </navigation>

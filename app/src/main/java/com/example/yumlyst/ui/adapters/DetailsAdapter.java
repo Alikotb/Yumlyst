@@ -11,9 +11,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.yumlyst.model.Helper;
 import com.example.yumlyst.R;
 import com.example.yumlyst.model.CategoryDTO;
+import com.example.yumlyst.model.Helper;
 import com.example.yumlyst.model.MealDTO;
 
 import java.util.ArrayList;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -13,18 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.yumlyst.MainActivity;
-import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.R;
-import com.example.yumlyst.ui.adapters.AreaAdapter;
-import com.example.yumlyst.ui.adapters.CategoryAdapter;
-import com.example.yumlyst.ui.adapters.DailMealAdapter;
-import com.example.yumlyst.ui.adapters.ImgradientAdapter;
+import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.model.AreaDTO;
 import com.example.yumlyst.model.CategoryDTO;
 import com.example.yumlyst.model.IngredientDTO;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.ui.OnclickListneres;
+import com.example.yumlyst.ui.adapters.AreaAdapter;
+import com.example.yumlyst.ui.adapters.CategoryAdapter;
+import com.example.yumlyst.ui.adapters.DailMealAdapter;
+import com.example.yumlyst.ui.adapters.ImgradientAdapter;
 import com.example.yumlyst.ui.homescrean.presenter.HomePresenter;
 import com.example.yumlyst.ui.homescrean.presenter.IHomePresenter;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -111,19 +110,27 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     public void showCategories(List<CategoryDTO> categories) {
         CategoryAdapter categoryAdapter = new CategoryAdapter(categories);
         categoryResc.setAdapter(categoryAdapter);
-        categoryAdapter.notifyDataSetChanged();
+        categoryAdapter.setOnitemclick(v -> {
+            navigateToSearch("#" + v.getStrCategory());
+        });
     }
 
     @Override
     public void showAreas(List<AreaDTO> areas) {
         AreaAdapter areaAdapter = new AreaAdapter(areas);
         CountiesResc.setAdapter(areaAdapter);
+        areaAdapter.setOnitemclick(v -> {
+            navigateToSearch(v.getStrArea());
+        });
     }
 
     @Override
     public void showIngredients(List<IngredientDTO> ingredients) {
         ImgradientAdapter ingredientAdapter = new ImgradientAdapter(ingredients);
         ingredientsResc.setAdapter(ingredientAdapter);
+        ingredientAdapter.setOnitemclick(v -> {
+            navigateToSearch("*" + v.getStrIngredient());
+        });
 
     }
 
@@ -140,15 +147,13 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
     @Override
     public void showPhotoUrl(String str) {
-        if (str!= null) {
+        if (str != null) {
             Glide.with(this)
                     .load(str)
                     .placeholder(R.drawable.profile) // Optional: Placeholder image
                     .into(profile_image);
         }
     }
-
-
 
 
     @Override
@@ -160,5 +165,13 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
                 HomeDirections.actionHome2ToDetailsFrag(meal);
         Navigation.findNavController(getView()).navigate(action);
     }
+
+    @Override
+    public void navigateToSearch(String type) {
+        HomeDirections.ActionHome2ToSearchFrag action =
+                HomeDirections.actionHome2ToSearchFrag(type);
+        Navigation.findNavController(getView()).navigate(action);
+    }
+
 
 }

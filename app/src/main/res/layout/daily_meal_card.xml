@@ -31,7 +31,7 @@
             app:layout_constraintWidth_percent="0.95">
 
             <ImageView
-                android:id="@+id/daily_meal_img"
+                android:id="@+id/mealImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
