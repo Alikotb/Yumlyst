@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.yumlyst.R;
-import com.example.yumlyst.ui.adapters.DetailsAdapter;
 import com.example.yumlyst.model.MealDTO;
+import com.example.yumlyst.ui.adapters.DetailsAdapter;
 
 public class DetailsFrag extends Fragment {
 
@@ -84,7 +84,9 @@ public class DetailsFrag extends Fragment {
         video.getSettings().setJavaScriptEnabled(true);
 
         video.setWebViewClient(new WebViewClient());
-        video.loadUrl(meal.getStrYoutube());
+        //video.loadUrl(meal.getStrYoutube());
+        String ifram = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/RIrgCGbIYWo?si=0dIOcHB5SrkQvvZS\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
+        video.loadData(ifram, "text/html", "UTF-8");
         video.setContentDescription("");
     }
 

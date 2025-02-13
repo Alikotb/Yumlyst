@@ -1,5 +1,6 @@
 package com.example.yumlyst.ui.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +10,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.yumlyst.R;
-import com.example.yumlyst.model.AreaDTO;
-import com.example.yumlyst.model.Helper;
+import com.example.yumlyst.model.MealDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
-    List<AreaDTO> dtos;
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
+    List<MealDTO> dtos;
     private onitemclick onitemclick;
 
-    public AreaAdapter(List<AreaDTO> dtos) {
+    public SearchAdapter(List<MealDTO> dtos) {
+        if (dtos == null)
+            Log.d("ali", "aaaaaaaaaa: ");
+
         this.dtos = new ArrayList<>(dtos);
     }
 
@@ -31,7 +35,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_card, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
 
@@ -39,13 +43,11 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        AreaDTO pdto = dtos.get(position);
-        //Log.d("ImageURL", "URL: " + pdto.getStrArea());
-        holder.textView.setText(pdto.getStrArea());
-        holder.imageView.setImageResource(Helper.getFlagResourceByName(holder.imageView.getContext(), pdto.getStrArea()));
-        holder.itemView.setOnClickListener(v -> {
-            onitemclick.onclick(pdto);
-        });
+        MealDTO pdto = dtos.get(position);
+        holder.mealName.setText(pdto.getStrMeal());
+        holder.mealCategory.setText(pdto.getStrCategory());
+        Glide.with(holder.itemView.getContext()).load(pdto.getStrMealThumb()).placeholder(R.drawable.beef).into(holder.imageView);
+
 
     }
 
@@ -54,18 +56,18 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
         return dtos.size();
     }
 
-    public void setList(List<AreaDTO> dtos) {
-
+    public void setList(List<MealDTO> dtos) {
         this.dtos = dtos;
     }
 
     public interface onitemclick {
-        void onclick(AreaDTO areaDTO);
+        void onclick(String str);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView textView;
+        TextView mealName;
+        TextView mealCategory;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,8 +75,9 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
         }
 
         private void findById(@NonNull View itemView) {
-            imageView = itemView.findViewById(R.id.ingredient_img);
-            textView = itemView.findViewById(R.id.category_name);
+            imageView = itemView.findViewById(R.id.mealImg);
+            mealName = itemView.findViewById(R.id.mealName);
+            mealCategory = itemView.findViewById(R.id.mealCategory);
         }
 
     }

@@ -12,9 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.yumlyst.model.Helper;
 import com.example.yumlyst.R;
-import com.example.yumlyst.model.CategoryDTO;
+import com.example.yumlyst.model.Helper;
 import com.example.yumlyst.model.IngredientDTO;
 
 import java.util.ArrayList;
@@ -50,6 +49,9 @@ public class ImgradientAdapter extends RecyclerView.Adapter<ImgradientAdapter.Vi
                 .load("https://www.themealdb.com/images/ingredients/" + pdto.getStrIngredient() + "-Small.png")
                 .placeholder(R.drawable.beef).into(holder.imageView);
         holder.imageView.setBackgroundResource(Helper.getRandomDrawable());
+        holder.itemView.setOnClickListener(v -> {
+            onitemclick.onclick(pdto);
+        });
 
 
     }
@@ -65,7 +67,7 @@ public class ImgradientAdapter extends RecyclerView.Adapter<ImgradientAdapter.Vi
     }
 
     public interface onitemclick {
-        void onclick(CategoryDTO categoryDTO);
+        void onclick(IngredientDTO ingredientDTO);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

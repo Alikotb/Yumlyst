@@ -1,13 +1,11 @@
 package com.example.yumlyst.network.APICall;
 
-import com.example.yumlyst.model.MealDTO;
-import com.example.yumlyst.model.responsemodel.CategoriesResponse;
 import com.example.yumlyst.model.responsemodel.AreasResponse;
+import com.example.yumlyst.model.responsemodel.CategoriesResponse;
 import com.example.yumlyst.model.responsemodel.IngredientsResponse;
 import com.example.yumlyst.model.responsemodel.MealResponse;
 
 import io.reactivex.rxjava3.core.Single;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

@@ -76,7 +76,7 @@ public class DailMealAdapter extends RecyclerView.Adapter<DailMealAdapter.ViewHo
         }
 
         private void findById(@NonNull View itemView) {
-            imageView = itemView.findViewById(R.id.daily_meal_img);
+            imageView = itemView.findViewById(R.id.mealImg);
             DailyMealName = itemView.findViewById(R.id.Daily_meal_name);
             DailyMealcat = itemView.findViewById(R.id.Daily_meal_category);
 

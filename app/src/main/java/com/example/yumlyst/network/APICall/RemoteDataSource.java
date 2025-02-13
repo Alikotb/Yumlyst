@@ -1,8 +1,5 @@
 package com.example.yumlyst.network.APICall;
 
-import android.util.Log;
-
-import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.model.responsemodel.AreasResponse;
 import com.example.yumlyst.model.responsemodel.CategoriesResponse;
 import com.example.yumlyst.model.responsemodel.IngredientsResponse;
@@ -10,17 +7,14 @@ import com.example.yumlyst.model.responsemodel.MealResponse;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.core.Single;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteDataSource {
 
     private static final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
-    private final RetofitGetter service;
     private static RemoteDataSource instance = null;
+    private final RetofitGetter service;
 
     private RemoteDataSource() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -68,24 +62,25 @@ public class RemoteDataSource {
         return service.getIngredients();
     }
 
-    public  Single<MealResponse> getRandomMeal() {
+    public Single<MealResponse> getRandomMeal() {
         return service.getRandomMeal();
         //Log.d("TAG", "getRandomMeal remot : "+ service);
     }
 
 
     public Single<MealResponse> getMealsByArea(String area) {
-       return service.getMealsByArea(area);
+        return service.getMealsByArea(area);
     }
 
-    public Single<MealResponse>  getMealsByCategory(String category) {
-       return service.getMealsByCategory(category);
+    public Single<MealResponse> getMealsByCategory(String category) {
+        return service.getMealsByCategory(category);
     }
 
-    public Single<MealResponse>  getMealsByIngredient(String ingredient) {
-       return service.getMealsByIngredient(ingredient);
+    public Single<MealResponse> getMealsByIngredient(String ingredient) {
+        return service.getMealsByIngredient(ingredient);
     }
-    public Single<MealResponse>  getMealById(String id) {
+
+    public Single<MealResponse> getMealById(String id) {
         return service.getMealById(id);
     }
 
