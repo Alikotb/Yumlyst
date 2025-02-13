@@ -87,7 +87,7 @@ public class HomePresenter implements IHomePresenter {
                     }
                 });
 
-        Log.d("TAG", "getRandomMeal: ");
+        //Log.d("TAG", "getRandomMeal: ");
     }
 
     public void getPhotoUrl() {

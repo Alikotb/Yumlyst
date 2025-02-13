@@ -19,7 +19,7 @@ public interface IHomeView {
     void showPhotoUrl(String str);
 
 
-    void navigateToMealDetails(MealDTO meal);
+    void navigateToMealDetails(String id);
 
     void navigateToSearch(String type);
 }

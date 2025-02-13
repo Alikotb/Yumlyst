@@ -81,9 +81,9 @@ public class SearchPresenter implements ISearchPresenter {
                     @Override
                     public void onSuccess(@NonNull MealResponse mealResponse) {
                         if (mealResponse.getMeals() != null) {
-                            searchView.showMealsByCategory(mealResponse.getMeals());
+                            searchView.showMealsByIngredient(mealResponse.getMeals());
                         } else {
-                            searchView.showMealsByCategory(new ArrayList<>()); // تجنب تمرير null
+                            searchView.showMealsByIngredient(new ArrayList<>()); // تجنب تمرير null
                         }
 
                     }
@@ -96,8 +96,8 @@ public class SearchPresenter implements ISearchPresenter {
                 });
     }
 
-    @Override
-    public void getMealByName(String name) {
 
     }
-}
+
+
+

@@ -63,7 +63,7 @@
 
             <!-- Meal Name -->
             <TextView
-                android:id="@+id/mealName"
+                android:id="@+id/mealDetailsName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
@@ -87,7 +87,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mealName" />
+                app:layout_constraintTop_toBottomOf="@id/mealDetailsName" />
 
             <!-- Instructions -->
             <androidx.cardview.widget.CardView

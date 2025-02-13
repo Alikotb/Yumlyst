@@ -12,7 +12,6 @@ public interface ISearchView {
     void showMealsByCategory(List<MealDTO> meals);
     void showMealsByArea(List<MealDTO> meals);
     void showMealsByIngredient(List<MealDTO> meals);
-    void showMealsByName(List<MealDTO> meals);
-    void navigateToMealDetails(MealDTO meal);
+    void navigateToMealDetails(String id);
 
 }
