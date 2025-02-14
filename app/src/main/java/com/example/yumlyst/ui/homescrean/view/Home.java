@@ -26,6 +26,8 @@ import com.example.yumlyst.ui.adapters.DailMealAdapter;
 import com.example.yumlyst.ui.adapters.ImgradientAdapter;
 import com.example.yumlyst.ui.homescrean.presenter.HomePresenter;
 import com.example.yumlyst.ui.homescrean.presenter.IHomePresenter;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
@@ -44,6 +46,13 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     String searchText;
     DailMealAdapter randomMealAdapter;
     IHomePresenter homePresenter;
+    CategoryAdapter categoryAdapter;
+    ChipGroup chipsSearchGroup;
+    Chip categoriesChip;
+    Chip areaChip;
+    Chip ingredientChip;
+    AreaAdapter areaAdapter;
+    ImgradientAdapter ingredientAdapter;
 
     public Home() {
         // Required empty public constructor
@@ -54,7 +63,6 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         super.onCreate(savedInstanceState);
         homePresenter = new HomePresenter(this, MealRepo.getInstance(RemoteDataSource.getInstance()));
         randomMealAdapter = new DailMealAdapter(new ArrayList<>());
-
     }
 
     @Override
@@ -67,13 +75,14 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ingredientAdapter = new ImgradientAdapter(new ArrayList<>());
+        areaAdapter = new AreaAdapter(new ArrayList<>());
+        categoryAdapter = new CategoryAdapter(new ArrayList<>());
         findById();
         setListeners();
         MainActivity mainActivity = (MainActivity) getActivity();
         mainActivity.showNavigationBottom();
         getDataFromRemot();
-
-
     }
 
     private void getDataFromRemot() {
@@ -92,8 +101,6 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         searchView.setOnClickListener(v -> {
             searchText = searchView.getQuery().toString();
         });
-
-
     }
 
     private void findById() {
@@ -103,13 +110,17 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         categoryResc = getActivity().findViewById(R.id.categoryResc);
         CountiesResc = getActivity().findViewById(R.id.CountiesResc);
         ingredientsResc = getActivity().findViewById(R.id.ingradientResc);
-
+        chipsSearchGroup = getActivity().findViewById(R.id.chipsSearchGroup);
+        categoriesChip = getActivity().findViewById(R.id.categoriesChip);
+        areaChip = getActivity().findViewById(R.id.areaChip);
+        ingredientChip = getActivity().findViewById(R.id.ingredientChip);
     }
 
     @Override
     public void showCategories(List<CategoryDTO> categories) {
-        CategoryAdapter categoryAdapter = new CategoryAdapter(categories);
+        categoryAdapter.setList(categories);
         categoryResc.setAdapter(categoryAdapter);
+        listenSearch();
         categoryAdapter.setOnitemclick(v -> {
             navigateToSearch("#" + v.getStrCategory());
         });
@@ -117,8 +128,9 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
     @Override
     public void showAreas(List<AreaDTO> areas) {
-        AreaAdapter areaAdapter = new AreaAdapter(areas);
+        areaAdapter.setList(areas);
         CountiesResc.setAdapter(areaAdapter);
+
         areaAdapter.setOnitemclick(v -> {
             navigateToSearch(v.getStrArea());
         });
@@ -126,12 +138,11 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
     @Override
     public void showIngredients(List<IngredientDTO> ingredients) {
-        ImgradientAdapter ingredientAdapter = new ImgradientAdapter(ingredients);
+        ingredientAdapter.setList(ingredients);
         ingredientsResc.setAdapter(ingredientAdapter);
         ingredientAdapter.setOnitemclick(v -> {
             navigateToSearch("*" + v.getStrIngredient());
         });
-
     }
 
     @Override
@@ -142,7 +153,6 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         randomMealAdapter.setOnitemclick(v -> {
             navigateToMealDetails(v.getIdMeal());
         });
-
     }
 
     @Override
@@ -150,11 +160,23 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         if (str != null) {
             Glide.with(this)
                     .load(str)
-                    .placeholder(R.drawable.profile) // Optional: Placeholder image
+                    .placeholder(R.drawable.profile)
                     .into(profile_image);
         }
     }
 
+    @Override
+    public void filterCategories(List<CategoryDTO> categorys) {
+        categoryAdapter.setList(categorys);
+    }
+
+    public void filterAreas(List<AreaDTO> areas) {
+        areaAdapter.setList(areas);
+    }
+
+    public void filterIngresiants(List<IngredientDTO> ingredientDTOS) {
+        ingredientAdapter.setList(ingredientDTOS);
+    }
 
     @Override
     public void navigateToMealDetails(String id) {
@@ -171,5 +193,58 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         Navigation.findNavController(getView()).navigate(action);
     }
 
+    private void listenSearch() {
+        chipsVisibility();
+        replaceCheckedChipsState();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (categoriesChip.isChecked()) {
+                    homePresenter.searchCategory(newText);
+                } else if (areaChip.isChecked()) {
+
+                    homePresenter.searchArea(newText);
+                } else if (ingredientChip.isChecked()) {
+                    homePresenter.searchIngredient(newText);
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void replaceCheckedChipsState() {
+        chipsSearchGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (checkedIds.size() != 0) {
+                if (checkedIds.get(0) == R.id.categoriesChip) {
+
+                    homePresenter.searchArea("");
+                    homePresenter.searchIngredient("");
+                } else if (checkedIds.get(0) == R.id.areaChip) {
+                    homePresenter.searchCategory("");
+                    homePresenter.searchIngredient("");
+                } else if (checkedIds.get(0) == R.id.ingredientChip) {
+
+                    homePresenter.searchArea("");
+                    homePresenter.searchCategory("");
+                }
+
+            }
+        });
+    }
+
+    private void chipsVisibility() {
+        searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus)
+                chipsSearchGroup.setVisibility(View.VISIBLE);
+            else
+                chipsSearchGroup.setVisibility(View.GONE);
+
+        });
+    }
 }

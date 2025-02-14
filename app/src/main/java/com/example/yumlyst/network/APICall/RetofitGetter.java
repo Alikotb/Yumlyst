@@ -38,6 +38,4 @@ public interface RetofitGetter {
     @GET("filter.php")
     Single<MealResponse> getMealsByIngredient(@Query("i") String ingredient);
 
-    //https://www.themealdb.com/images/ingredients/Lime-Small.png
-
 }

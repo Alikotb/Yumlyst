@@ -1,6 +1,10 @@
 package com.example.yumlyst.ui.search.view;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,18 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.yumlyst.R;
 import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.ui.adapters.SearchAdapter;
-import com.example.yumlyst.ui.homescrean.presenter.HomePresenter;
-import com.example.yumlyst.ui.homescrean.view.HomeDirections;
 import com.example.yumlyst.ui.search.presenter.ISearchPresenter;
 import com.example.yumlyst.ui.search.presenter.SearchPresenter;
 
@@ -32,10 +29,10 @@ public class SearchFrag extends Fragment implements ISearchView {
     ISearchPresenter searchPresenter;
     SearchAdapter searchAdapter;
     String category;
+
     public SearchFrag() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -54,23 +51,23 @@ public class SearchFrag extends Fragment implements ISearchView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-         category = SearchFragArgs.fromBundle(getArguments()).getType();
+        category = SearchFragArgs.fromBundle(getArguments()).getType();
         searchPresenter = new SearchPresenter(this, MealRepo.getInstance(RemoteDataSource.getInstance()));
-        Log.d("ali", "category from searchfrag : "+category);
+        Log.d("ali", "category from searchfrag : " + category);
         findById();
         if (category.startsWith("#")) {
-            category=category.substring(1);
+            category = category.substring(1);
             searchPresenter.getMealByCategory(category);
-        }else if(category.startsWith("*")){
-            category=category.substring(1);
+        } else if (category.startsWith("*")) {
+            category = category.substring(1);
             searchPresenter.getMealByIngredient(category);
-        }else{
+        } else {
             searchPresenter.getMealByArea(category);
         }
 
     }
 
-    private void findById(){
+    private void findById() {
         searchResycle = getActivity().findViewById(R.id.searchResycle);
     }
 
@@ -105,7 +102,6 @@ public class SearchFrag extends Fragment implements ISearchView {
 
         });
     }
-
 
 
     @Override

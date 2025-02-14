@@ -10,8 +10,4 @@ public class AreasResponse {
     public List<AreaDTO> getMeals() {
         return meals;
     }
-
-    public void setMeals(List<AreaDTO> meals) {
-        this.meals = meals;
-    }
 }

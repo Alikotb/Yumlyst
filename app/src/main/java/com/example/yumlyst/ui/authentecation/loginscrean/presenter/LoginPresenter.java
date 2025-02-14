@@ -27,25 +27,21 @@ public class LoginPresenter {
         this.auth = FirebaseAuth.getInstance();
         this.view = view;
         userCashing = UserCashing.getInstance(context);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(context.getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(context.getString(R.string.default_web_client_id)).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(context, gso);
     }
 
     public void login(String email, String password) {
         if (!validateInputs(email, password)) return;
 
-        auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        userCashing.cacheUser(email, auth.getCurrentUser().getDisplayName());
-                        view.navigateToHome();
-                    } else {
-                        view.showError(task.getException() != null ? task.getException().getMessage() : "Login failed.");
-                    }
-                });
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                userCashing.cacheUser(email, auth.getCurrentUser().getDisplayName());
+                view.navigateToHome();
+            } else {
+                view.showError(task.getException() != null ? task.getException().getMessage() : "Login failed.");
+            }
+        });
     }
 
     public void signInWithGoogle() {
@@ -56,30 +52,28 @@ public class LoginPresenter {
     }
 
     public void handleGoogleSignInResult(Intent data) {
-        GoogleSignIn.getSignedInAccountFromIntent(data)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        String idToken = task.getResult().getIdToken();
-                        firebaseAuthWithGoogle(idToken);
-                        //cahes user in shared pref
+        GoogleSignIn.getSignedInAccountFromIntent(data).addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                String idToken = task.getResult().getIdToken();
+                firebaseAuthWithGoogle(idToken);
+                //cahes user in shared pref
 
-                    } else {
-                        view.showError("Google Sign-In failed!");
-                    }
-                });
+            } else {
+                view.showError("Google Sign-In failed!");
+            }
+        });
     }
 
     public void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        userCashing.cacheUser(auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getEmail());
-                        view.navigateToHome();
-                    } else {
-                        view.showError(task.getException() != null ? task.getException().getMessage() : "Google Sign-In failed.");
-                    }
-                });
+        auth.signInWithCredential(credential).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                userCashing.cacheUser(auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getEmail());
+                view.navigateToHome();
+            } else {
+                view.showError(task.getException() != null ? task.getException().getMessage() : "Google Sign-In failed.");
+            }
+        });
     }
 
     private boolean validateInputs(String email, String password) {

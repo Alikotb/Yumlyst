@@ -64,7 +64,6 @@ public class RemoteDataSource {
 
     public Single<MealResponse> getRandomMeal() {
         return service.getRandomMeal();
-        //Log.d("TAG", "getRandomMeal remot : "+ service);
     }
 
 

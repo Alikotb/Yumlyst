@@ -62,8 +62,8 @@ public class ImgradientAdapter extends RecyclerView.Adapter<ImgradientAdapter.Vi
     }
 
     public void setList(List<IngredientDTO> dtos) {
-
         this.dtos = dtos;
+        notifyDataSetChanged();
     }
 
     public interface onitemclick {

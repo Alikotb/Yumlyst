@@ -40,7 +40,6 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AreaDTO pdto = dtos.get(position);
-        //Log.d("ImageURL", "URL: " + pdto.getStrArea());
         holder.textView.setText(pdto.getStrArea());
         holder.imageView.setImageResource(Helper.getFlagResourceByName(holder.imageView.getContext(), pdto.getStrArea()));
         holder.itemView.setOnClickListener(v -> {
@@ -55,8 +54,8 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
     }
 
     public void setList(List<AreaDTO> dtos) {
-
         this.dtos = dtos;
+        notifyDataSetChanged();
     }
 
     public interface onitemclick {
