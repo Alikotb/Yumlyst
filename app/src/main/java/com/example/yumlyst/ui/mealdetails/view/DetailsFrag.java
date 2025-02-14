@@ -68,15 +68,7 @@ public class DetailsFrag extends Fragment implements IDetailsView {
         super.onViewCreated(view, savedInstanceState);
          id=DetailsFragArgs.fromBundle(getArguments()).getID();
         detailsPresenter.getMealDetails(id);
-//        print_data(meal);
-//        adapter = new DetailsAdapter(meal.listIngredients());
-//        ingredients.setAdapter(adapter);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().onBackPressed();
-            }
-        });
+        back.setOnClickListener(view1 -> getActivity().onBackPressed());
     }
 
     private void print_data(MealDTO meal) {

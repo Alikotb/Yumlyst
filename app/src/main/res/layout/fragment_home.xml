@@ -7,75 +7,121 @@
     android:layout_height="match_parent"
     android:background="@color/whole_app_color">
 
+    <!-- الملف الشخصي والصورة -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+    <!-- نص الترحيب -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/welcometxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="110dp"
+        android:text="@string/welcome"
+        android:textColor="@color/app_color"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profile_image"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"/>
+
+    <!-- مربع البحث -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/search"
+        android:elevation="8dp"
+        android:iconifiedByDefault="true"
+        android:padding="8dp"
+        android:queryHint="Search here..."
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+    <!-- مجموعة الفلاتر (ChipGroup) -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipsSearchGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:singleSelection="true"
+        android:visibility="gone"
+        >
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/categoriesChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:text="@string/categories"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="@color/app_color"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/areaChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:text="@string/area"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="@color/app_color"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/ingredientChip"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredeint"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="@color/app_color"/>
+    </com.google.android.material.chip.ChipGroup>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/chipsSearchGroup"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/_home_page_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="16dp">
 
-            <!-- Profile Image -->
-
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/profile_image"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/profile"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/CircularImageView" />
-
-            <!-- Welcome Text -->
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/welcometxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="128dp"
-                android:text="@string/welcome"
-                android:textColor="@color/app_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile_image" />
-
-            <!-- SearchPresenter View -->
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/search"
-                android:elevation="8dp"
-                android:iconifiedByDefault="true"
-                android:padding="8dp"
-                android:queryHint="Search here..."
-                app:layout_constraintTop_toBottomOf="@id/welcometxt" />
-
-            <!-- Daily Meal Text -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dailytxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="42dp"
                 android:text="@string/daily_meal"
                 android:textColor="@color/app_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/searchView" />
+                tools:ignore="MissingConstraints" />
 
             <!-- Daily Meals RecyclerView -->
             <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview

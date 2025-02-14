@@ -39,7 +39,6 @@ public class MealRepo {
 
     public Single<MealResponse> getRandomMeal() {
         return remoteDataSource.getRandomMeal();
-        //Log.d("TAG", "getRandomMeal: "+ remoteDataSource);
     }
 
     public Single<MealResponse> getMealsByArea(String area) {

@@ -28,7 +28,6 @@ public class Profile extends Fragment implements OnclickListneres, IProfileView 
     private ProfilePresenter profilePresenter;
 
     public Profile() {
-        // Required empty public constructor
     }
 
     @Override

@@ -8,7 +8,6 @@ import com.example.yumlyst.model.responsemodel.MealResponse;
 import com.example.yumlyst.ui.search.view.ISearchView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;

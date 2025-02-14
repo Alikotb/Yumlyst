@@ -55,8 +55,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     public void setList(List<CategoryDTO> dtos) {
-
         this.dtos = dtos;
+        notifyDataSetChanged();
     }
 
     public interface onitemclick {

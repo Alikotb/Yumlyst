@@ -1,5 +1,7 @@
 package com.example.yumlyst.ui.mealdetails.presenter;
 
+import android.annotation.SuppressLint;
+
 import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.model.MealDTO;
 
@@ -17,6 +19,7 @@ public class DetailsPresenter {
         this.detailsView = detailsView;
         this.mealRepo = mealRepo;
     }
+    @SuppressLint("CheckResult")
     public void getMealDetails(String id) {
         mealRepo.getMealById(id)
                 .subscribeOn(Schedulers.io())

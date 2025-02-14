@@ -10,8 +10,4 @@ public class IngredientsResponse {
     public List<IngredientDTO> getMeals() {
         return meals;
     }
-
-    public void setMeals(List<IngredientDTO> meals) {
-        this.meals = meals;
-    }
 }

@@ -1,6 +1,5 @@
 package com.example.yumlyst.ui.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +21,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     private onitemclick onitemclick;
 
     public SearchAdapter(List<MealDTO> dtos) {
-        if (dtos == null)
-            Log.d("ali", "aaaaaaaaaa: ");
-
         this.dtos = new ArrayList<>(dtos);
     }
 
@@ -44,15 +40,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MealDTO pdto = dtos.get(position);
-        Log.d("Ali", "onclick 1 on search adapter : "+pdto.getStrMeal()+pdto.getStrCategory()+ pdto.getStrArea());
 
         holder.mealName.setText(pdto.getStrMeal());
         holder.mealCategory.setText(pdto.getStrCategory());
         Glide.with(holder.itemView.getContext()).load(pdto.getStrMealThumb()).placeholder(R.drawable.beef).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
-            Log.d("Ali", "onclick on search adapter : "+pdto.getStrMeal()+pdto.getStrCategory()+ pdto.getStrArea());
-                   onitemclick.onclick(pdto.getIdMeal());
+            onitemclick.onclick(pdto.getIdMeal());
 
         });
 

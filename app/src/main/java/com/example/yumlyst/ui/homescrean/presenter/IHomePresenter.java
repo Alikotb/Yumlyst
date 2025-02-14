@@ -8,7 +8,14 @@ public interface IHomePresenter {
     void getIngredients();
 
     void getRandomMeal();
+
     void getPhotoUrl();
+
+    void searchCategory(String query);
+
+    void searchArea(String query);
+
+    void searchIngredient(String query);
 
 
 }

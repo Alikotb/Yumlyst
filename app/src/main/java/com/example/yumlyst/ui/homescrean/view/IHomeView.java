@@ -18,6 +18,11 @@ public interface IHomeView {
 
     void showPhotoUrl(String str);
 
+    void filterCategories(List<CategoryDTO> categorys);
+
+    void filterAreas(List<AreaDTO> areas);
+
+    void filterIngresiants(List<IngredientDTO> ingredientDTOS);
 
     void navigateToMealDetails(String id);
 
