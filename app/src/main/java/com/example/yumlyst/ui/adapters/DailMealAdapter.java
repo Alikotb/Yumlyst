@@ -41,8 +41,6 @@ public class DailMealAdapter extends RecyclerView.Adapter<DailMealAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MealDTO pdto = dtos.get(position);
-        Log.d("TAG", "onBindViewHolder: " + pdto.getStrMeal());
-        Log.d("TAG", "onBindViewHolder: " + pdto.getStrCategory());
         holder.DailyMealName.setText(pdto.getStrMeal());
         holder.DailyMealcat.setText(pdto.getStrCategory());
         Glide.with(holder.itemView.getContext()).load(pdto.getStrMealThumb()).into(holder.imageView);

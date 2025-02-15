@@ -2,11 +2,13 @@ package com.example.yumlyst.ui.authentecation.loginscrean.presenter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.yumlyst.R;
 import com.example.yumlyst.database.UserCashing;
+import com.example.yumlyst.helper.BitmapTypeConverter;
 import com.example.yumlyst.ui.authentecation.loginscrean.view.ILoginView;
 import com.example.yumlyst.ui.authentecation.loginscrean.view.Login;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,7 +38,8 @@ public class LoginPresenter {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                userCashing.cacheUser(email, auth.getCurrentUser().getDisplayName());
+                Log.d("hhh", "login: "+auth.getCurrentUser().getUid());
+                userCashing.cacheUser(email, auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getPhotoUrl().toString(), auth.getCurrentUser().getUid());
                 view.navigateToHome();
             } else {
                 view.showError(task.getException() != null ? task.getException().getMessage() : "Login failed.");
@@ -68,7 +71,8 @@ public class LoginPresenter {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         auth.signInWithCredential(credential).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                userCashing.cacheUser(auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getEmail());
+                Log.d("hhh", "login: "+auth.getCurrentUser().getUid());
+                userCashing.cacheUser(auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getEmail(), auth.getCurrentUser().getPhotoUrl().toString(), auth.getCurrentUser().getUid());
                 view.navigateToHome();
             } else {
                 view.showError(task.getException() != null ? task.getException().getMessage() : "Google Sign-In failed.");

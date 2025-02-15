@@ -43,7 +43,7 @@ public class SignUpPresenter {
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
                                         //cahes user in shared pref
-                                        userCashing.cacheUser(name, email);
+                                        userCashing.cacheUser(name, email, user.getPhotoUrl().toString(), user.getUid());
                                         view.navigateToHome();
                                     } else {
                                         view.showError(task.getException().getMessage());

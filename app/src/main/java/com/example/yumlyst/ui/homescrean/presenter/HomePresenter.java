@@ -3,7 +3,7 @@ package com.example.yumlyst.ui.homescrean.presenter;
 
 import android.annotation.SuppressLint;
 
-import com.example.yumlyst.database.MealRepo;
+import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.AreaDTO;
 import com.example.yumlyst.model.CategoryDTO;
 import com.example.yumlyst.model.IngredientDTO;
@@ -25,13 +25,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class HomePresenter implements IHomePresenter {
     FirebaseAuth auth;
     private IHomeView homeView;
-    private MealRepo mealRepo;
+    private RemoteMealRepo mealRepo;
     private List<CategoryDTO> categories = new ArrayList<>();
     private List<AreaDTO> areas = new ArrayList<>();
     private List<IngredientDTO> ingredients = new ArrayList<>();
 
 
-    public HomePresenter(IHomeView homeView, MealRepo mealRepo) {
+    public HomePresenter(IHomeView homeView, RemoteMealRepo mealRepo) {
         this.homeView = homeView;
         this.mealRepo = mealRepo;
         auth = FirebaseAuth.getInstance();

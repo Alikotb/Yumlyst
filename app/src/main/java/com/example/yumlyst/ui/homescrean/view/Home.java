@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -13,12 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
-import com.example.yumlyst.database.MealRepo;
 import com.example.yumlyst.model.AreaDTO;
 import com.example.yumlyst.model.CategoryDTO;
 import com.example.yumlyst.model.IngredientDTO;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
+import com.example.yumlyst.network.authentecation.NetworkUtils;
+import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.ui.OnclickListneres;
 import com.example.yumlyst.ui.adapters.AreaAdapter;
 import com.example.yumlyst.ui.adapters.CategoryAdapter;
@@ -53,6 +56,11 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     Chip ingredientChip;
     AreaAdapter areaAdapter;
     ImgradientAdapter ingredientAdapter;
+    MainActivity mainActivity;
+    TextView dailytxt;
+    TextView categorytxt;
+    TextView Countriestxt;
+    TextView ingradienttxt;
 
     public Home() {
         // Required empty public constructor
@@ -61,7 +69,7 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        homePresenter = new HomePresenter(this, MealRepo.getInstance(RemoteDataSource.getInstance()));
+        homePresenter = new HomePresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()));
         randomMealAdapter = new DailMealAdapter(new ArrayList<>());
     }
 
@@ -80,10 +88,11 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         categoryAdapter = new CategoryAdapter(new ArrayList<>());
         findById();
         setListeners();
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.showNavigationBottom();
-        getDataFromRemot();
+        mainActivity = (MainActivity) getActivity();
+        componentLayout();
+
     }
+
 
     private void getDataFromRemot() {
         homePresenter.getCategories();
@@ -103,18 +112,7 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         });
     }
 
-    private void findById() {
-        profile_image = getActivity().findViewById(R.id.profile_image);
-        searchView = getActivity().findViewById(R.id.searchView);
-        Daily_meal_res = getActivity().findViewById(R.id.Daily_meal_res);
-        categoryResc = getActivity().findViewById(R.id.categoryResc);
-        CountiesResc = getActivity().findViewById(R.id.CountiesResc);
-        ingredientsResc = getActivity().findViewById(R.id.ingradientResc);
-        chipsSearchGroup = getActivity().findViewById(R.id.chipsSearchGroup);
-        categoriesChip = getActivity().findViewById(R.id.categoriesChip);
-        areaChip = getActivity().findViewById(R.id.areaChip);
-        ingredientChip = getActivity().findViewById(R.id.ingredientChip);
-    }
+
 
     @Override
     public void showCategories(List<CategoryDTO> categories) {
@@ -247,4 +245,59 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
         });
     }
+    private void findById() {
+        profile_image = getActivity().findViewById(R.id.profile_image);
+        searchView = getActivity().findViewById(R.id.searchView);
+        Daily_meal_res = getActivity().findViewById(R.id.Daily_meal_res);
+        categoryResc = getActivity().findViewById(R.id.categoryResc);
+        CountiesResc = getActivity().findViewById(R.id.CountiesResc);
+        ingredientsResc = getActivity().findViewById(R.id.ingradientResc);
+        chipsSearchGroup = getActivity().findViewById(R.id.chipsSearchGroup);
+        categoriesChip = getActivity().findViewById(R.id.categoriesChip);
+        areaChip = getActivity().findViewById(R.id.areaChip);
+        ingredientChip = getActivity().findViewById(R.id.ingredientChip);
+        dailytxt = getActivity().findViewById(R.id.dailytxt);
+        categorytxt = getActivity().findViewById(R.id.categorytxt);
+        Countriestxt = getActivity().findViewById(R.id.Countriestxt);
+        ingradienttxt = getActivity().findViewById(R.id.ingradienttxt);
+
+    }
+    private void hideComponent(){
+        Daily_meal_res.setVisibility(View.GONE);
+        categoryResc.setVisibility(View.GONE);
+        CountiesResc.setVisibility(View.GONE);
+        ingredientsResc.setVisibility(View.GONE);
+        searchView.setVisibility(View.GONE);
+        profile_image.setVisibility(View.GONE);
+        dailytxt.setVisibility(View.GONE);
+        categorytxt.setVisibility(View.GONE);
+        Countriestxt.setVisibility(View.GONE);
+        ingradienttxt.setVisibility(View.GONE);
+        chipsSearchGroup.setVisibility(View.GONE);
+    }
+    private void showComponent(){
+        Daily_meal_res.setVisibility(View.VISIBLE);
+        categoryResc.setVisibility(View.VISIBLE);
+        CountiesResc.setVisibility(View.VISIBLE);
+        ingredientsResc.setVisibility(View.VISIBLE);
+        searchView.setVisibility(View.VISIBLE);
+        profile_image.setVisibility(View.VISIBLE);
+        dailytxt.setVisibility(View.VISIBLE);
+        categorytxt.setVisibility(View.VISIBLE);
+        Countriestxt.setVisibility(View.VISIBLE);
+        ingradienttxt.setVisibility(View.VISIBLE);
+    }
+    private void componentLayout() {
+        mainActivity.showNavigationBottom();
+        if (NetworkUtils.isConnected(getContext())) {
+            mainActivity.hideInternetAnimation();
+            showComponent();
+            getDataFromRemot();
+        }
+        else{
+            hideComponent();
+            mainActivity.showInternetAnimation();
+        }
+    }
+
 }

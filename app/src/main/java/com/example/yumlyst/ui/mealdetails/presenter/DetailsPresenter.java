@@ -2,7 +2,10 @@ package com.example.yumlyst.ui.mealdetails.presenter;
 
 import android.annotation.SuppressLint;
 
-import com.example.yumlyst.database.MealRepo;
+import com.example.yumlyst.database.room.LocalDataSource;
+import com.example.yumlyst.model.LocalDTO;
+import com.example.yumlyst.repository.LocalRepo;
+import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.MealDTO;
 
 import com.example.yumlyst.ui.mealdetails.view.IDetailsView;
@@ -12,12 +15,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DetailsPresenter {
     private IDetailsView detailsView;
-    private MealRepo mealRepo;
-    private MealDTO meal;
-    private String id;
-    public DetailsPresenter(IDetailsView detailsView, MealRepo mealRepo) {
+    private RemoteMealRepo mealRepo;
+    private LocalRepo localRepo;
+
+    public DetailsPresenter(IDetailsView detailsView, RemoteMealRepo mealRepo,LocalRepo localRepo) {
         this.detailsView = detailsView;
         this.mealRepo = mealRepo;
+        this.localRepo=localRepo;
     }
     @SuppressLint("CheckResult")
     public void getMealDetails(String id) {
@@ -29,6 +33,14 @@ public class DetailsPresenter {
                 );
 
     }
+
+    public void insert(LocalDTO localDTO){
+        localRepo.insert(localDTO)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+    }
+
 
 
 }

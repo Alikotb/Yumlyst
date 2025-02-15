@@ -40,7 +40,7 @@ public class Splash extends Fragment {
             mainActivity.hideNavigationBottom();
         }
 
-        userCashing = UserCashing.getInstance(requireContext()); // تأكد من أن `Context` غير `null`
+        userCashing = UserCashing.getInstance(requireContext());
 
         LottieAnimationView lottieView = view.findViewById(R.id.lottieAnimationView);
         lottieView.playAnimation();
@@ -53,10 +53,10 @@ public class Splash extends Fragment {
 
         handler = new Handler(Looper.getMainLooper());
         navigateRunnable = () -> {
-            if (!isAdded()) return; // تأكد أن `Fragment` ما زال موجودًا قبل التنقل
+            if (!isAdded()) return;
 
             NavController navController = Navigation.findNavController(view);
-            if (userCashing.isUserLoggedIn()) {  // استبدال الشرط بـ `isUserLoggedIn()`
+            if (userCashing.isUserLoggedIn()) {
                 navController.navigate(R.id.action_splach_to_home2);
             } else {
                 navController.navigate(R.id.action_splach_to_firstScreen);

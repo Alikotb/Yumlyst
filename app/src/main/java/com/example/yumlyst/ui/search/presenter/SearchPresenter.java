@@ -2,8 +2,7 @@ package com.example.yumlyst.ui.search.presenter;
 
 import android.util.Log;
 
-import com.example.yumlyst.database.MealRepo;
-import com.example.yumlyst.model.MealDTO;
+import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.responsemodel.MealResponse;
 import com.example.yumlyst.ui.search.view.ISearchView;
 
@@ -17,9 +16,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchPresenter implements ISearchPresenter {
     private ISearchView searchView;
-    private MealRepo mealRepo;
+    private RemoteMealRepo mealRepo;
 
-    public SearchPresenter(ISearchView searchView, MealRepo mealRepo) {
+    public SearchPresenter(ISearchView searchView, RemoteMealRepo mealRepo) {
         this.searchView = searchView;
         this.mealRepo = mealRepo;
     }
