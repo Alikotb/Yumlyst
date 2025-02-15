@@ -10,7 +10,4 @@ import java.util.List;
 public interface IDetailsView {
     void showMealDetails(MealDTO meal);
 
-
-
-
 }

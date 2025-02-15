@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yumlyst.R;
-import com.example.yumlyst.database.MealRepo;
+import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.ui.adapters.SearchAdapter;
@@ -52,7 +52,7 @@ public class SearchFrag extends Fragment implements ISearchView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         category = SearchFragArgs.fromBundle(getArguments()).getType();
-        searchPresenter = new SearchPresenter(this, MealRepo.getInstance(RemoteDataSource.getInstance()));
+        searchPresenter = new SearchPresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()));
         Log.d("ali", "category from searchfrag : " + category);
         findById();
         if (category.startsWith("#")) {
@@ -73,34 +73,34 @@ public class SearchFrag extends Fragment implements ISearchView {
 
     @Override
     public void showMealsByCategory(List<MealDTO> meals) {
-        searchAdapter = new SearchAdapter(meals);
+        searchAdapter = new SearchAdapter(meals,"s");
         searchResycle.setAdapter(searchAdapter);
         searchAdapter.setOnitemclick((id) -> {
             navigateToMealDetails(id);
 
-        });
+        },null);
 
     }
 
     @Override
     public void showMealsByArea(List<MealDTO> meals) {
-        searchAdapter = new SearchAdapter(meals);
+        searchAdapter = new SearchAdapter(meals,"s");
         searchResycle.setAdapter(searchAdapter);
         searchAdapter.setOnitemclick((id) -> {
             navigateToMealDetails(id);
 
-        });
+        },null);
 
     }
 
     @Override
     public void showMealsByIngredient(List<MealDTO> meals) {
-        searchAdapter = new SearchAdapter(meals);
+        searchAdapter = new SearchAdapter(meals,"s");
         searchResycle.setAdapter(searchAdapter);
         searchAdapter.setOnitemclick((id) -> {
             navigateToMealDetails(id);
 
-        });
+        },null);
     }
 
 

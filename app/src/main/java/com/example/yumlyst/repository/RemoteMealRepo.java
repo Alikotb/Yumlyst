@@ -1,4 +1,4 @@
-package com.example.yumlyst.database;
+package com.example.yumlyst.repository;
 
 import com.example.yumlyst.model.responsemodel.AreasResponse;
 import com.example.yumlyst.model.responsemodel.CategoriesResponse;
@@ -8,19 +8,19 @@ import com.example.yumlyst.network.APICall.RemoteDataSource;
 
 import io.reactivex.rxjava3.core.Single;
 
-public class MealRepo {
+public class RemoteMealRepo {
     //ProductLocalDataSource localDataSource;
-    private static MealRepo instance = null;
+    private static RemoteMealRepo instance = null;
     RemoteDataSource remoteDataSource;
 
-    private MealRepo(RemoteDataSource remoteDataSource) {
+    private RemoteMealRepo(RemoteDataSource remoteDataSource) {
         this.remoteDataSource = remoteDataSource;
         //this.localDataSource = localDataSource;
     }
 
-    public static MealRepo getInstance(RemoteDataSource remoteDataSource) {
+    public static RemoteMealRepo getInstance(RemoteDataSource remoteDataSource) {
         if (instance == null) {
-            instance = new MealRepo(remoteDataSource);
+            instance = new RemoteMealRepo(remoteDataSource);
         }
         return instance;
     }

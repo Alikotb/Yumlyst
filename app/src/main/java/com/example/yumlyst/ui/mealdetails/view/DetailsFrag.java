@@ -1,7 +1,11 @@
 package com.example.yumlyst.ui.mealdetails.view;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +16,25 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.yumlyst.R;
-import com.example.yumlyst.database.MealRepo;
+import com.example.yumlyst.database.UserCashing;
+import com.example.yumlyst.database.room.LocalDataSource;
+import com.example.yumlyst.helper.BitmapTypeConverter;
+import com.example.yumlyst.helper.Calender;
+import com.example.yumlyst.model.LocalDTO;
+import com.example.yumlyst.network.authentecation.NetworkUtils;
+import com.example.yumlyst.repository.LocalRepo;
+import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.ui.adapters.DetailsAdapter;
@@ -39,6 +55,7 @@ public class DetailsFrag extends Fragment implements IDetailsView {
     DetailsAdapter adapter;
     String id;
     DetailsPresenter detailsPresenter;
+    UserCashing userCashing;
 
     public DetailsFrag() {
         // Required empty public constructor
@@ -62,20 +79,62 @@ public class DetailsFrag extends Fragment implements IDetailsView {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        detailsPresenter = new DetailsPresenter(this, MealRepo.getInstance(RemoteDataSource.getInstance()));
-
+        detailsPresenter = new DetailsPresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()), LocalRepo.getInstance(LocalDataSource.getInstance(requireContext())));
         findById();
         super.onViewCreated(view, savedInstanceState);
          id=DetailsFragArgs.fromBundle(getArguments()).getID();
         detailsPresenter.getMealDetails(id);
         back.setOnClickListener(view1 -> getActivity().onBackPressed());
+        setListeners();
+         userCashing = UserCashing.getInstance(requireContext());
     }
 
-    private void print_data(MealDTO meal) {
+    public void setListeners() {
+
+            plan.setOnClickListener(view -> {
+                if(userCashing.isUserLoggedIn() ) {
+                    Log.d("hhh", "setListeners: "+userCashing.getUserId());
+                    detailsPresenter.insert(new LocalDTO(Calender.getDate(), userCashing.getUserId(), meal, "p"));
+                    Toast.makeText(requireContext(), "added successfully", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(requireContext(), "loginFirst", Toast.LENGTH_SHORT).show();
+                }
+            });
+            favorite.setOnClickListener(view -> {
+                if(userCashing.isUserLoggedIn()) {
+                detailsPresenter.insert(new LocalDTO(Calender.getDate(), userCashing.getUserId(), meal, "f"));
+                    Toast.makeText(requireContext(), "added successfully", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(requireContext(), "loginFirst", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+    }
+
+    private void print_data(MealDTO meall) {
+         Bitmap mealBitmap; // Declare the local variable
+        this.meal=meall;
         name.setText(meal.getStrMeal());
         categoryArea.setText(meal.getStrCategory() + " | " + meal.getStrArea());
         instructions.setText(meal.getStrInstructions());
-        Glide.with(this).load(meal.getStrMealThumb()).into(imageView);
+//        Glide.with(this).load(meal.getStrMealThumb()).into(imageView);
+        Glide.with(this)
+            .asBitmap()
+                .load(meal.getStrMealThumb()) // Load image URL
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        imageView.setImageBitmap(resource);
+                        meal.setBitmap(BitmapTypeConverter.fromBitmap(resource));
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+                        // Handle cleanup if needed
+                    }
+                });
+
         adapter = new DetailsAdapter(meal.listIngredients());
         ingredients.setAdapter(adapter);
         loadYouTubeVideo(meal.getStrYoutube());

@@ -6,6 +6,10 @@ import java.util.List;
 
 public class MealDTO implements Serializable {
 
+    String bitmap;
+
+
+
     private String idMeal;
     private String strMeal;
     private String strDrinkAlternate;
@@ -59,6 +63,14 @@ public class MealDTO implements Serializable {
     private String strImageSource;
     private String strCreativeCommonsConfirmed;
     private String dateModified;
+
+    public String getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(String bitmap) {
+        this.bitmap = bitmap;
+    }
 
     public String getIdMeal() {
         return idMeal;
