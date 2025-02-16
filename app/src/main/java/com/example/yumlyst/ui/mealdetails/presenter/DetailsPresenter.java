@@ -13,7 +13,7 @@ import com.example.yumlyst.ui.mealdetails.view.IDetailsView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class DetailsPresenter {
+public class DetailsPresenter implements IDetailsPresenter{
     private IDetailsView detailsView;
     private RemoteMealRepo mealRepo;
     private LocalRepo localRepo;
@@ -24,6 +24,7 @@ public class DetailsPresenter {
         this.localRepo=localRepo;
     }
     @SuppressLint("CheckResult")
+    @Override
     public void getMealDetails(String id) {
         mealRepo.getMealById(id)
                 .subscribeOn(Schedulers.io())
@@ -33,7 +34,7 @@ public class DetailsPresenter {
                 );
 
     }
-
+    @Override
     public void insert(LocalDTO localDTO){
         localRepo.insert(localDTO)
                 .subscribeOn(Schedulers.io())

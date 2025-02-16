@@ -17,6 +17,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.yumlyst.R;
 import com.example.yumlyst.helper.BitmapTypeConverter;
+import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.MealDTO;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MealDTO pdto = dtos.get(position);
-        if(type.equals("s")){
+        if(type.equals(Constant.SEARCHFRAG)){
         holder.mealName.setText(pdto.getStrMeal());
         holder.mealCategory.setText(pdto.getStrCategory());
         Glide.with(holder.itemView.getContext()).load(pdto.getStrMealThumb()).placeholder(R.drawable.beef).into(holder.imageView);
@@ -60,13 +61,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             onitemclick.onclick(pdto.getIdMeal());
 
         });}
-        else if(type.equals("f")){
+        else if(type.equals(Constant.FAVORITE)){
             holder.removeBtn.setVisibility(View.VISIBLE);
             holder.mealName.setText(pdto.getStrMeal());
             holder.mealCategory.setText(pdto.getStrCategory());
             holder.imageView.setImageBitmap( BitmapTypeConverter.toBitmap(pdto.getBitmap()));
             holder.removeBtn.setOnClickListener(v -> {
-
                 onDeletClick.onclick(pdto);
             });
         }

@@ -29,10 +29,10 @@ import java.util.List;
 public class Favorite extends Fragment implements IFavoriteView {
 
 
-    RecyclerView recyclerView;
-    SearchAdapter adapter;
-    IFavoritePresenter presenter;
-    UserCashing userCashing;
+    private RecyclerView recyclerView;
+    private SearchAdapter adapter;
+    private IFavoritePresenter presenter;
+    private UserCashing userCashing;
     public Favorite() {
     }
 

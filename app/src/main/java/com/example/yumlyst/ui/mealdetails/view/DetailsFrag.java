@@ -1,6 +1,5 @@
 package com.example.yumlyst.ui.mealdetails.view;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -31,14 +30,15 @@ import com.example.yumlyst.database.UserCashing;
 import com.example.yumlyst.database.room.LocalDataSource;
 import com.example.yumlyst.helper.BitmapTypeConverter;
 import com.example.yumlyst.helper.Calender;
+import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.LocalDTO;
-import com.example.yumlyst.network.authentecation.NetworkUtils;
 import com.example.yumlyst.repository.LocalRepo;
 import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.ui.adapters.DetailsAdapter;
 import com.example.yumlyst.ui.mealdetails.presenter.DetailsPresenter;
+import com.example.yumlyst.ui.mealdetails.presenter.IDetailsPresenter;
 
 public class DetailsFrag extends Fragment implements IDetailsView {
 
@@ -54,7 +54,7 @@ public class DetailsFrag extends Fragment implements IDetailsView {
     Button favorite;
     DetailsAdapter adapter;
     String id;
-    DetailsPresenter detailsPresenter;
+    IDetailsPresenter detailsPresenter;
     UserCashing userCashing;
 
     public DetailsFrag() {
@@ -93,17 +93,18 @@ public class DetailsFrag extends Fragment implements IDetailsView {
 
             plan.setOnClickListener(view -> {
                 if(userCashing.isUserLoggedIn() ) {
-                    Log.d("hhh", "setListeners: "+userCashing.getUserId());
-                    detailsPresenter.insert(new LocalDTO(Calender.getDate(), userCashing.getUserId(), meal, "p"));
-                    Toast.makeText(requireContext(), "added successfully", Toast.LENGTH_SHORT).show();
-
+                    Calender.showDate(requireContext(), selectedDate -> {
+                        detailsPresenter.insert(new LocalDTO(Calender.getDay(selectedDate), userCashing.getUserId(), meal, Constant.PLAN));
+                        Log.d("hhh", "setListeners: "+userCashing.getUserId() +" day :"+selectedDate);
+                        Toast.makeText(requireContext(), "added successfully", Toast.LENGTH_SHORT).show();
+                    });
                 }else{
                     Toast.makeText(requireContext(), "loginFirst", Toast.LENGTH_SHORT).show();
                 }
             });
             favorite.setOnClickListener(view -> {
                 if(userCashing.isUserLoggedIn()) {
-                detailsPresenter.insert(new LocalDTO(Calender.getDate(), userCashing.getUserId(), meal, "f"));
+                detailsPresenter.insert(new LocalDTO(Calender.getMinDate(), userCashing.getUserId(), meal, Constant.FAVORITE));
                     Toast.makeText(requireContext(), "added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(requireContext(), "loginFirst", Toast.LENGTH_SHORT).show();
