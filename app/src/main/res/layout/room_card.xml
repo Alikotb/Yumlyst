@@ -7,35 +7,55 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/roomCard"
         android:layout_width="match_parent"
-        android:layout_height="130sp"
+        android:layout_height="120sp"
         app:cardBackgroundColor="#132E39"
         app:layout_constraintBottom_toTopOf="@id/mainLayout"
-        app:strokeColor="@color/white"
-        app:strokeWidth="0sp">
+        app:strokeColor="@color/app_color"
+        app:strokeWidth="2sp"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/app_color"
+            android:background="#BEE0E6"
             >
 
             <TextView
-                android:id="@+id/movie_title"
+                android:id="@+id/mealNameAll"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="130sp"
-                android:layout_marginTop="5sp"
+                android:layout_marginStart="128dp"
+                android:layout_marginTop="8sp"
                 android:maxLines="2"
                 android:paddingEnd="20sp"
                 android:text="Movie Title"
-                android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textColor="@color/app_color"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/removeBtn"
+                style="@style/Widget.MaterialComponents.Button"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_marginStart="144dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/disabled_color"
+                android:text="@string/remove"
+                android:textColor="@color/app_color"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mealNameAll"
+                />
 
 
 
@@ -51,8 +71,8 @@
         app:cardCornerRadius="5sp"
         app:layout_constraintBottom_toBottomOf="@id/roomCard"
         app:layout_constraintStart_toStartOf="@id/roomCard"
-        app:strokeColor="@color/blue"
-        app:strokeWidth="1sp">
+        app:strokeColor="@color/app_color"
+        app:strokeWidth="2sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +32,7 @@ public class SearchFrag extends Fragment implements ISearchView {
     ISearchPresenter searchPresenter;
     SearchAdapter searchAdapter;
     String category;
+    ImageButton back;
 
     public SearchFrag() {
         // Required empty public constructor
@@ -56,6 +59,9 @@ public class SearchFrag extends Fragment implements ISearchView {
         searchPresenter = new SearchPresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()));
         Log.d("ali", "category from searchfrag : " + category);
         findById();
+back.setOnClickListener(v->{
+    navigateHome();
+});
         if (category.startsWith("#")) {
             category = category.substring(1);
             searchPresenter.getMealByCategory(category);
@@ -69,6 +75,7 @@ public class SearchFrag extends Fragment implements ISearchView {
     }
 
     private void findById() {
+        back = getActivity().findViewById(R.id.back_button);
         searchResycle = getActivity().findViewById(R.id.searchResycle);
     }
 
@@ -111,6 +118,12 @@ public class SearchFrag extends Fragment implements ISearchView {
                 SearchFragDirections.actionSearchFragToDetailsFrag(id);
         Navigation.findNavController(getView()).navigate(action);
 
+
+    }
+
+    @Override
+    public void navigateHome() {
+        Navigation.findNavController(getView()).navigate(R.id.action_searchFrag_to_home2);
 
     }
 }

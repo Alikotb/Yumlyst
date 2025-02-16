@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -111,7 +110,6 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
             searchText = searchView.getQuery().toString();
         });
     }
-
 
 
     @Override
@@ -220,14 +218,22 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         chipsSearchGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
             if (checkedIds.size() != 0) {
                 if (checkedIds.get(0) == R.id.categoriesChip) {
-
+                    categoryResc.setVisibility(View.VISIBLE);
+                    ingredientsResc.setVisibility(View.GONE);
+                    CountiesResc.setVisibility(View.GONE);
                     homePresenter.searchArea("");
                     homePresenter.searchIngredient("");
                 } else if (checkedIds.get(0) == R.id.areaChip) {
+                    categoryResc.setVisibility(View.GONE);
+                    ingredientsResc.setVisibility(View.GONE);
+                    CountiesResc.setVisibility(View.VISIBLE);
                     homePresenter.searchCategory("");
                     homePresenter.searchIngredient("");
                 } else if (checkedIds.get(0) == R.id.ingredientChip) {
 
+                    categoryResc.setVisibility(View.GONE);
+                    ingredientsResc.setVisibility(View.VISIBLE);
+                    CountiesResc.setVisibility(View.GONE);
                     homePresenter.searchArea("");
                     homePresenter.searchCategory("");
                 }
@@ -238,13 +244,31 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
 
     private void chipsVisibility() {
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus)
-                chipsSearchGroup.setVisibility(View.VISIBLE);
-            else
-                chipsSearchGroup.setVisibility(View.GONE);
+            if (hasFocus) {
+                onSearchFocus();
+            } else {
+                outSearchFocus();
 
+            }
         });
     }
+
+    private void outSearchFocus() {
+        Daily_meal_res.setVisibility(View.VISIBLE);
+        chipsSearchGroup.setVisibility(View.GONE);
+        dailytxt.setVisibility(View.VISIBLE);
+
+        categoryResc.setVisibility(View.VISIBLE);
+        ingredientsResc.setVisibility(View.VISIBLE);
+        CountiesResc.setVisibility(View.VISIBLE);
+    }
+
+    private void onSearchFocus() {
+        chipsSearchGroup.setVisibility(View.VISIBLE);
+        Daily_meal_res.setVisibility(View.GONE);
+        dailytxt.setVisibility(View.GONE);
+    }
+
     private void findById() {
         profile_image = getActivity().findViewById(R.id.profile_image);
         searchView = getActivity().findViewById(R.id.searchView);
@@ -262,7 +286,8 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         ingradienttxt = getActivity().findViewById(R.id.ingradienttxt);
 
     }
-    private void hideComponent(){
+
+    private void hideComponent() {
         Daily_meal_res.setVisibility(View.GONE);
         categoryResc.setVisibility(View.GONE);
         CountiesResc.setVisibility(View.GONE);
@@ -275,7 +300,8 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         ingradienttxt.setVisibility(View.GONE);
         chipsSearchGroup.setVisibility(View.GONE);
     }
-    private void showComponent(){
+
+    private void showComponent() {
         Daily_meal_res.setVisibility(View.VISIBLE);
         categoryResc.setVisibility(View.VISIBLE);
         CountiesResc.setVisibility(View.VISIBLE);
@@ -287,14 +313,14 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
         Countriestxt.setVisibility(View.VISIBLE);
         ingradienttxt.setVisibility(View.VISIBLE);
     }
+
     private void componentLayout() {
         mainActivity.showNavigationBottom();
         if (NetworkUtils.isConnected(getContext())) {
             mainActivity.hideInternetAnimation();
             showComponent();
             getDataFromRemot();
-        }
-        else{
+        } else {
             hideComponent();
             mainActivity.showInternetAnimation();
         }

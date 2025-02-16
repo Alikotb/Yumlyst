@@ -70,4 +70,5 @@
     <color name="Dark_Gray">#3C3C3C</color>
     <color name="Ligt_blue">#80BFFF</color>
     <color name="soft_white">#80FFFFFF</color>
+    <color name="removeColor">#182F3964</color>
 </resources>

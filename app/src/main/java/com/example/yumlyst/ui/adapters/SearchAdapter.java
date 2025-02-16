@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.room_card, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
 
@@ -54,7 +55,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         MealDTO pdto = dtos.get(position);
         if(type.equals(Constant.SEARCHFRAG)){
         holder.mealName.setText(pdto.getStrMeal());
-        holder.mealCategory.setText(pdto.getStrCategory());
         Glide.with(holder.itemView.getContext()).load(pdto.getStrMealThumb()).placeholder(R.drawable.beef).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
@@ -64,7 +64,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         else if(type.equals(Constant.FAVORITE)){
             holder.removeBtn.setVisibility(View.VISIBLE);
             holder.mealName.setText(pdto.getStrMeal());
-            holder.mealCategory.setText(pdto.getStrCategory());
             holder.imageView.setImageBitmap( BitmapTypeConverter.toBitmap(pdto.getBitmap()));
             holder.removeBtn.setOnClickListener(v -> {
                 onDeletClick.onclick(pdto);
@@ -101,19 +100,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView mealName;
-        TextView mealCategory;
-        ImageView removeBtn;
-
+        TextView mealName;;
+Button removeBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             findById(itemView);
         }
 
         private void findById(@NonNull View itemView) {
-            imageView = itemView.findViewById(R.id.mealImg);
-            mealName = itemView.findViewById(R.id.mealName);
-            mealCategory = itemView.findViewById(R.id.mealCategory);
+            imageView = itemView.findViewById(R.id.local_img);
+            mealName = itemView.findViewById(R.id.mealNameAll);
             removeBtn = itemView.findViewById(R.id.removeBtn);
         }
 
