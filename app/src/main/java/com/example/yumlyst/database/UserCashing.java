@@ -37,17 +37,6 @@ public class UserCashing {
         editor.apply();
     }
 
-    public String getUsername() {
-        return sharedPreferences.getString(KEY_USERNAME, "Guest");
-    }
-
-    public String getEmail() {
-        return sharedPreferences.getString(KEY_EMAIL, "No email provided");
-    }
-
-    public String getPhotoUrl() {
-        return sharedPreferences.getString(KEY_PHOTO_URL, null);
-    }
 
     public boolean isUserLoggedIn() {
         return sharedPreferences.contains(KEY_USERNAME);

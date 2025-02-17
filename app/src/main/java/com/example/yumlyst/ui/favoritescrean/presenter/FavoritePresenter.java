@@ -40,7 +40,7 @@ public class FavoritePresenter implements IFavoritePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         meals -> view.showMeals(meals),
-                        throwable -> view.showMeals(null)
+                        throwable -> {}
                 );
 
         ;
@@ -56,7 +56,7 @@ public class FavoritePresenter implements IFavoritePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> view.deleteMeal(meal),
-                        throwable -> view.deleteMeal(null)
+                        throwable -> {}
                 );
         fireBaseRepo.deleteFromFireBase(id,meal,Constant.FIREBASE_FAVORITE, Constant.FAVORITE);
 

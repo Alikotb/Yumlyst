@@ -59,7 +59,8 @@ public class HomePresenter implements IHomePresenter {
                         item -> {
                             homeView.showCategories(item.getCategories());
                             categories.addAll(item.getCategories());
-                        }
+                        },
+                        error->{}
                 );
 
     }
@@ -74,7 +75,9 @@ public class HomePresenter implements IHomePresenter {
                         item -> {
                             homeView.showAreas(item.getMeals());
                             areas.addAll(item.getMeals());
-                        }
+                        },
+                        error->{}
+
                 );
     }
 
@@ -88,7 +91,9 @@ public class HomePresenter implements IHomePresenter {
                         item -> {
                             homeView.showIngredients(item.getMeals());
                             ingredients.addAll(item.getMeals());
-                        }
+                        },
+                        error->{}
+
                 );
 
     }
@@ -178,6 +183,7 @@ public class HomePresenter implements IHomePresenter {
     public void insertAllFavoriteFromFirebase(String userID,String type) {
         FireBaseRepo.getInstance().getFavorite(userID, type)
                 .addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("CheckResult")
                     @Override
                     public void onDataChange(@androidx.annotation.NonNull DataSnapshot snapshot) {
                         for (DataSnapshot daySnapshot : snapshot.getChildren()) {
@@ -187,23 +193,11 @@ public class HomePresenter implements IHomePresenter {
                             }
                         }
                        // insertall(localDTOS);
-                        localRepo.insertAll(localDTOS).subscribeOn(Schedulers.io()).subscribe();
-//                        if (snapshot.exists()) {
-//                            for (DataSnapshot daySnapshot : snapshot.getChildren()) {
-//                                String day = daySnapshot.getKey();
-//                                for (DataSnapshot mealSnapshot : daySnapshot.getChildren()) {
-//                                    MealDTO meal = mealSnapshot.getValue(MealDTO.class);
-//                                    if (meal != null) {
-//                                        LocalDTO retrievedLocalDTO = new LocalDTO(day, userID, meal, type);
-//                                        localRepo.insert(retrievedLocalDTO);
-//
-//                                    }
-//                                }
-//                            }
-//
-//                        } else {
-//                            Log.d("TAG", "onDataChange: No data found for this user and type.");
-//
+                        localRepo.insertAll(localDTOS).subscribeOn(Schedulers.io()).subscribe(
+                                ()->{},
+                                error->{}
+
+                        );
                     }
 
                     @Override
@@ -226,22 +220,16 @@ public class HomePresenter implements IHomePresenter {
                 .subscribe(new SingleObserver<List<AreaDTO>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-
                     }
-
                     @Override
                     public void onSuccess(@NonNull List<AreaDTO> areaDTOS) {
                         homeView.filterAreas(areaDTOS);
                     }
-
                     @Override
                     public void onError(@NonNull Throwable e) {
-
                     }
                 });
     }
-
-
     @Override
     public void searchCategory(String query) {
         Observable<CategoryDTO> myObservable = Observable.fromIterable(categories);
@@ -253,32 +241,20 @@ public class HomePresenter implements IHomePresenter {
                 .subscribe(new SingleObserver<List<CategoryDTO>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-
                     }
-
                     @Override
                     public void onSuccess(@NonNull List<CategoryDTO> categoryDTOS) {
                         homeView.filterCategories(categoryDTOS);
                     }
-
                     @Override
                     public void onError(@NonNull Throwable e) {
-
                     }
                 });
     }
-
-
     public void getPhotoUrl() {
         FirebaseUser user = auth.getCurrentUser();
         homeView.showPhotoUrl((user != null && user.getPhotoUrl() != null) ? user.getPhotoUrl().toString() : null);
     }
-
-    /*private void insertall(List<LocalDTO> localDTOS) {
-        for (LocalDTO localDTO : localDTOS)
-            localRepo.insert(localDTO).subscribeOn(Schedulers.io()).subscribe();
-    }*/
-
 
 }
 

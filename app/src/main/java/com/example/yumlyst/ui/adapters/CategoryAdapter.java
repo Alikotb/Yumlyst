@@ -3,6 +3,7 @@ package com.example.yumlyst.ui.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -66,6 +67,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
+        ImageButton removeItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +77,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         private void findById(@NonNull View itemView) {
             imageView = itemView.findViewById(R.id.categoryImg);
             textView = itemView.findViewById(R.id.categoryName);
+            removeItem = itemView.findViewById(R.id.removeItem);
+            removeItem.setVisibility(View.GONE);
         }
 
     }

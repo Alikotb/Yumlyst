@@ -13,7 +13,6 @@
         android:background="#FAFAFA"
         android:fillViewport="true"
         android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomButtonsLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -137,61 +136,9 @@
                 app:layout_constraintTop_toBottomOf="@id/mealIngredients"
                 tools:listitem="@layout/details_card" />
 
-            <WebView
-                android:id="@+id/mealVideoWebView"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ingredientsRecyclerView"
-
-                />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <!-- Fixed Bottom Buttons -->
-    <LinearLayout
-        android:id="@+id/bottomButtonsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="#00FFFFFF"
-        android:elevation="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnPlan"
-
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:backgroundTint="#FF9800"
-            android:elevation="4dp"
-            android:text="@string/plan"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:cornerRadius="12dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnFavorite"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E91E63"
-            android:elevation="4dp"
-            android:text="@string/favourite"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:cornerRadius="12dp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

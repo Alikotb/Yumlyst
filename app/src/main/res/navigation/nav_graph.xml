@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/splach">
 
@@ -64,10 +65,6 @@
             app:destination="@id/searchFrag" />
     </fragment>
     <fragment
-        android:id="@+id/favorite"
-        android:name="com.example.yumlyst.ui.favoritescrean.view.Favorite"
-        android:label="Favorite" />
-    <fragment
         android:id="@+id/profile"
         android:name="com.example.yumlyst.ui.authentecation.profilescrean.view.Profile"
         android:label="Profile" >
@@ -78,7 +75,11 @@
     <fragment
         android:id="@+id/plan"
         android:name="com.example.yumlyst.ui.planscrean.view.Plan"
-        android:label="Plan" />
+        android:label="Plan" >
+        <action
+            android:id="@+id/action_plan_to_offlineDetails"
+            app:destination="@id/offlineDetails" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFrag"
         android:name="com.example.yumlyst.ui.mealdetails.view.DetailsFrag"
@@ -102,6 +103,26 @@
             app:destination="@id/detailsFrag" />
         <action
             android:id="@+id/action_searchFrag_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorite2"
+        android:name="com.example.yumlyst.ui.favoritescrean.view.Favorite"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favorite2_to_offlineDetails"
+            app:destination="@id/offlineDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineDetails"
+        android:name="com.example.yumlyst.ui.mealdetails.view.OfflineDetails"
+        android:label="OfflineDetails" >
+        <argument
+            android:name="meal"
+            app:argType="com.example.yumlyst.model.MealDTO" />
+        <action
+            android:id="@+id/action_offlineDetails_to_home2"
             app:destination="@id/home2" />
     </fragment>
 </navigation>

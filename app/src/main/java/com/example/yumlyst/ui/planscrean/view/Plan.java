@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yumlyst.MainActivity;
@@ -23,6 +24,7 @@ import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.authentecation.NetworkUtils;
 import com.example.yumlyst.repository.LocalRepo;
 import com.example.yumlyst.ui.adapters.PlanAdapter;
+import com.example.yumlyst.ui.homescrean.view.HomeDirections;
 import com.example.yumlyst.ui.planscrean.presenter.IPlanPresenter;
 import com.example.yumlyst.ui.planscrean.presenter.PlanPresenter;
 
@@ -67,6 +69,7 @@ public class Plan extends Fragment implements IPlanView {
         findViews(view);
         setListeners();
         deleteElement();
+        showOffDetails();
     }
 
     private void setListeners() {
@@ -110,13 +113,20 @@ public class Plan extends Fragment implements IPlanView {
         adapter.setOnitemclick(meal -> {
             if (NetworkUtils.isConnected(getContext())) {
                 presenter.deleteFromPlan(userCashing.getUserId(), meal, selectedDay);
-
                 adapter.removeMeal(meal);
             } else {
                 Toast.makeText(requireContext(), "No Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    private void showOffDetails() {
+        adapter.setForward(meal -> {
+            PlanDirections.ActionPlanToOfflineDetails action = PlanDirections.actionPlanToOfflineDetails(meal);
+            Navigation.findNavController(requireView()).navigate(action);
+        });
+    }
+
 
     @Override
     public void deleteMeal(MealDTO meal) {

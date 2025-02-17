@@ -11,4 +11,9 @@ public class Constant {
     public final static String FIREBASE_FAVORITE="FIREBASE_FAVORITE";
 
 
+    public final static String ONLINE_DETAILS="on";
+
+    public final static String OFFLINE_DETAILS="of";
+
+
 }

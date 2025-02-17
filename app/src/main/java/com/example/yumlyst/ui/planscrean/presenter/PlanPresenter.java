@@ -37,7 +37,7 @@ public class PlanPresenter implements IPlanPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> view.deleteMeal(meal),
-                        throwable -> view.deleteMeal(null)
+                        throwable -> {}
                 );
         fireBaseRepo.deleteFromFireBase(userID,meal,day, Constant.PLAN);
     }
@@ -57,7 +57,7 @@ public class PlanPresenter implements IPlanPresenter {
                         meals -> {
                             view.showMeals(meals);
                         },
-                        throwable -> view.showMeals(null)
+                        throwable -> {}
                 );
 
 

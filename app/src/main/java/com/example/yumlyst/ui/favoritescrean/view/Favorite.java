@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -23,7 +24,9 @@ import com.example.yumlyst.repository.LocalRepo;
 import com.example.yumlyst.ui.adapters.SearchAdapter;
 import com.example.yumlyst.ui.favoritescrean.presenter.FavoritePresenter;
 import com.example.yumlyst.ui.favoritescrean.presenter.IFavoritePresenter;
+import com.example.yumlyst.ui.planscrean.view.PlanDirections;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,15 +58,17 @@ public class Favorite extends Fragment implements IFavoriteView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.favoriteRecycle);
+        adapter = new SearchAdapter(new ArrayList<>(),"");
         presenter=new FavoritePresenter(LocalRepo.getInstance(LocalDataSource.getInstance(requireContext())),this);
         userCashing = UserCashing.getInstance(requireContext());
         presenter.getMeals(userCashing.getUserId(),Constant.FAVORITE);
+        showOffDetails();
         MainActivity mainActivity=(MainActivity) getActivity();
         mainActivity.hideInternetAnimation();
     }
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new SearchAdapter(meals, Constant.FAVORITE);
+        adapter.setList(meals, Constant.FAVORITE);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnitemclick(null, meal -> {
@@ -76,7 +81,12 @@ public class Favorite extends Fragment implements IFavoriteView {
         });
     }
 
-
+    private void showOffDetails() {
+        adapter.setForward(meal -> {
+            FavoriteDirections.ActionFavorite2ToOfflineDetails action = FavoriteDirections.actionFavorite2ToOfflineDetails(meal);
+            Navigation.findNavController(requireView()).navigate(action);
+        });
+    }
 
     @Override
     public void deleteMeal(MealDTO meal) {

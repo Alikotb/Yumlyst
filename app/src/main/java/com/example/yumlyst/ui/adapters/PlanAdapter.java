@@ -3,6 +3,7 @@ package com.example.yumlyst.ui.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,11 @@ import java.util.List;
 public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     List<MealDTO> dtos;
     private onitemclick onitemclick;
+    private Forward forward;
+
+    public void setForward(Forward forward) {
+        this.forward = forward;
+    }
 
     public PlanAdapter(List<MealDTO> dtos) {
         this.dtos = dtos;
@@ -30,19 +36,21 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingradient_card, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MealDTO pdto = dtos.get(position);
-        holder.textView.setText(pdto.getStrArea());
+        holder.textView.setText(pdto.getStrMeal());
         holder.imageView.setImageBitmap(BitmapTypeConverter.toBitmap(pdto.getBitmap()));
-        holder.itemView.setOnClickListener(v -> {
+        holder.removeItem.setOnClickListener(v -> {
             onitemclick.onclick(pdto);
+        });
+        holder.itemView.setOnClickListener(v -> {
+            forward.onclick(pdto);
         });
 
     }
@@ -69,18 +77,23 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     public interface onitemclick {
         void onclick(MealDTO areaDTO);
     }
+    public interface Forward {
+        void onclick(MealDTO areaDTO);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
+        ImageButton removeItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             findById(itemView);
         }
         private void findById(@NonNull View itemView) {
-            imageView = itemView.findViewById(R.id.ingredient_img);
-            textView = itemView.findViewById(R.id.category_name);
+            imageView = itemView.findViewById(R.id.categoryImg);
+            textView = itemView.findViewById(R.id.categoryName);
+            removeItem = itemView.findViewById(R.id.removeItem);
         }
-
     }
 }

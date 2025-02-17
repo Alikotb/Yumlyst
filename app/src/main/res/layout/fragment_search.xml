@@ -8,7 +8,7 @@
     android:background="@color/whole_app_color"
     >
 
-    <!-- Back Button -->
+    <!-- Forward Button -->
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="64dp"
