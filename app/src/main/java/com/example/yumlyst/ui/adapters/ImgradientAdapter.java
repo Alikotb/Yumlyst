@@ -34,7 +34,7 @@ public class ImgradientAdapter extends RecyclerView.Adapter<ImgradientAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingradient_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_card, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
 
@@ -82,7 +82,7 @@ public class ImgradientAdapter extends RecyclerView.Adapter<ImgradientAdapter.Vi
 
         private void findById(@NonNull View itemView) {
             imageView = itemView.findViewById(R.id.ingredient_img);
-            textView = itemView.findViewById(R.id.ingredient_name);
+            textView = itemView.findViewById(R.id.category_name);
             cardView = itemView.findViewById(R.id.ingredient_image_card);
         }
 

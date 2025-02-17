@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Single;
 
 public class LocalRepo {
     private static LocalRepo instance = null;
-    LocalDataSource localDataSource;
+    private LocalDataSource localDataSource;
     private LocalRepo(LocalDataSource localDataSource) {
         this.localDataSource = localDataSource;
     }
@@ -31,20 +31,17 @@ public class LocalRepo {
     public Completable deleteFromPlan(String userID, MealDTO meal, String day) {
         return localDataSource.deleteFromPlan(userID, meal, day);
     }
-    public Completable deleteAllPlan(String userID, String type) {
-        return localDataSource.deleteAllPlan(userID, type);
-    }
     public Completable deleteFromFavorit(String userID, MealDTO meal, String type) {
         return localDataSource.deleteFromFavorit(userID, meal, type);
-    }
-    public Completable deleteAllFavorit(String userID, String type) {
-        return localDataSource.deleteAllFavorit(userID, type);
     }
     public Single<List<LocalDTO>> getAllFavorit(String userID, String type) {
         return localDataSource.getAllFavorit(userID, type);
     }
     public Single<List<LocalDTO>> getAllPlanByDay(String userID, String day, String type) {
         return localDataSource.getAllPlanByDay(userID, day, type);
+    }
+    public Completable insertAll(List<LocalDTO> localDTO) {
+        return localDataSource.insertAll(localDTO);
     }
 
 }

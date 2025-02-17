@@ -100,5 +100,8 @@
         <action
             android:id="@+id/action_searchFrag_to_detailsFrag"
             app:destination="@id/detailsFrag" />
+        <action
+            android:id="@+id/action_searchFrag_to_home2"
+            app:destination="@id/home2" />
     </fragment>
 </navigation>

@@ -13,5 +13,6 @@ public interface ISearchView {
     void showMealsByArea(List<MealDTO> meals);
     void showMealsByIngredient(List<MealDTO> meals);
     void navigateToMealDetails(String id);
+    void navigateHome();
 
 }

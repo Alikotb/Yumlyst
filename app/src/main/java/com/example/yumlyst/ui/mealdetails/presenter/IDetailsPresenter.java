@@ -8,4 +8,5 @@ public interface IDetailsPresenter {
 
     void insert(LocalDTO localDTO );
 
+
 }

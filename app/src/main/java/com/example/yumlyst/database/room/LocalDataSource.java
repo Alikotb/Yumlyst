@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.yumlyst.model.LocalDTO;
 import com.example.yumlyst.model.MealDTO;
+import com.example.yumlyst.network.firebase.FirebaseDataSource;
 
 import java.util.List;
 
@@ -28,6 +29,12 @@ public class LocalDataSource {
 
     public Completable insert(LocalDTO localDTO) {
         return dao.insert(localDTO);
+
+    }
+
+    public Completable insertAll(List<LocalDTO> localDTO) {
+        return dao.insertAll(localDTO);
+
     }
 
     public Completable deleteFromPlan(String userID, MealDTO meal, String day) {
@@ -35,17 +42,11 @@ public class LocalDataSource {
 
     }
 
-    public Completable deleteAllPlan(String userID, String type) {
-        return dao.deleteAllPlan(userID, type);
-    }
 
     public Completable deleteFromFavorit(String userID, MealDTO meal, String type) {
         return dao.deleteFromFavorit(userID, meal, type);
     }
 
-    public Completable deleteAllFavorit(String userID, String type) {
-        return dao.deleteAllFavorit(userID, type);
-    }
 
     public Single<List<LocalDTO>> getAllFavorit(String userID, String type) {
         return dao.getAllFavorit(userID, type);

@@ -38,4 +38,8 @@ public interface DAO {
     @Query("DELETE FROM LocalDTO WHERE userID = :userID AND type = :type")
     Completable deleteAllFavorit(String userID, String type);
 
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Completable insertAll(List<LocalDTO> localDTO);
+
 }
