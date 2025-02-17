@@ -16,6 +16,7 @@ import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
 import com.example.yumlyst.database.UserCashing;
 import com.example.yumlyst.database.room.LocalDataSource;
+import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.authentecation.NetworkUtils;
 import com.example.yumlyst.repository.LocalRepo;
@@ -56,13 +57,13 @@ public class Favorite extends Fragment implements IFavoriteView {
         recyclerView=view.findViewById(R.id.favoriteRecycle);
         presenter=new FavoritePresenter(LocalRepo.getInstance(LocalDataSource.getInstance(requireContext())),this);
         userCashing = UserCashing.getInstance(requireContext());
-        presenter.getMeals(userCashing.getUserId(),"f");
+        presenter.getMeals(userCashing.getUserId(),Constant.FAVORITE);
         MainActivity mainActivity=(MainActivity) getActivity();
         mainActivity.hideInternetAnimation();
     }
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new SearchAdapter(meals, "f");
+        adapter = new SearchAdapter(meals, Constant.FAVORITE);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnitemclick(null, meal -> {

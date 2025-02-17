@@ -62,6 +62,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
         });}
         else if(type.equals(Constant.FAVORITE)){
+            holder. removeBtn.setVisibility(View.VISIBLE);
             holder.removeBtn.setVisibility(View.VISIBLE);
             holder.mealName.setText(pdto.getStrMeal());
             holder.imageView.setImageBitmap( BitmapTypeConverter.toBitmap(pdto.getBitmap()));

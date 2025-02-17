@@ -32,6 +32,7 @@ import com.example.yumlyst.helper.BitmapTypeConverter;
 import com.example.yumlyst.helper.Calender;
 import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.LocalDTO;
+import com.example.yumlyst.network.firebase.FirebaseDataSource;
 import com.example.yumlyst.repository.LocalRepo;
 import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.MealDTO;
@@ -79,9 +80,9 @@ public class DetailsFrag extends Fragment implements IDetailsView {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         detailsPresenter = new DetailsPresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()), LocalRepo.getInstance(LocalDataSource.getInstance(requireContext())));
         findById();
-        super.onViewCreated(view, savedInstanceState);
          id=DetailsFragArgs.fromBundle(getArguments()).getID();
         detailsPresenter.getMealDetails(id);
         back.setOnClickListener(view1 -> getActivity().onBackPressed());
@@ -94,7 +95,7 @@ public class DetailsFrag extends Fragment implements IDetailsView {
             plan.setOnClickListener(view -> {
                 if(userCashing.isUserLoggedIn() ) {
                     Calender.showDate(requireContext(), selectedDate -> {
-                        detailsPresenter.insert(new LocalDTO(Calender.getDay(selectedDate), userCashing.getUserId(), meal, Constant.PLAN));
+                        detailsPresenter.insert(new LocalDTO(selectedDate, userCashing.getUserId(), meal, Constant.PLAN));
                         Log.d("hhh", "setListeners: "+userCashing.getUserId() +" day :"+selectedDate);
                         Toast.makeText(requireContext(), "added successfully", Toast.LENGTH_SHORT).show();
                     });
@@ -104,7 +105,7 @@ public class DetailsFrag extends Fragment implements IDetailsView {
             });
             favorite.setOnClickListener(view -> {
                 if(userCashing.isUserLoggedIn()) {
-                detailsPresenter.insert(new LocalDTO(Calender.getMinDate(), userCashing.getUserId(), meal, Constant.FAVORITE));
+                    detailsPresenter.insert(new LocalDTO(Constant.FIREBASE_FAVORITE, userCashing.getUserId(), meal, Constant.FAVORITE));
                     Toast.makeText(requireContext(), "added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(requireContext(), "loginFirst", Toast.LENGTH_SHORT).show();

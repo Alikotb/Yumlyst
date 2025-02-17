@@ -20,6 +20,7 @@ import com.example.yumlyst.model.IngredientDTO;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.network.authentecation.NetworkUtils;
+import com.example.yumlyst.network.firebase.FirebaseDataSource;
 import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.ui.OnclickListneres;
 import com.example.yumlyst.ui.adapters.AreaAdapter;

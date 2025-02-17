@@ -1,5 +1,9 @@
 package com.example.yumlyst.network.firebase;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.LocalDTO;
 import com.example.yumlyst.model.MealDTO;
 import com.google.firebase.database.DatabaseReference;
@@ -11,12 +15,12 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 
 public class FirebaseDataSource {
-    FirebaseDatabase database;
-    DatabaseReference myRef;
+    private  FirebaseDatabase database;
+    private  DatabaseReference myRef;
     private  static FirebaseDataSource instance;
     private FirebaseDataSource() {
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("users");
+        myRef = database.getReference(Constant.FIREBASE_REF);
     }
     public static FirebaseDataSource getInstance() {
         if (instance == null) {
@@ -24,16 +28,33 @@ public class FirebaseDataSource {
         }
         return instance;
     }
-    public Completable insert(LocalDTO localDTO ){
-        myRef.child(localDTO.getUserID()).child(localDTO.getDay()).child(localDTO.getType()).push().setValue(localDTO);
-        return null;
-    }
-    public Completable deleteFromPlan(String userID, MealDTO meal, String day, String type) {
-        return null;
-    }
-    public Single<List<MealDTO>> getAllPlanByDay(String userID, String day, String type) {
+    public  void insert(LocalDTO localDTO ){
+        myRef.child(localDTO.getUserID())
+                .child(localDTO.getType())
+                .child(localDTO.getDay())
+                .child(localDTO.getMeal().getIdMeal())
+                .setValue(localDTO.getMeal());
 
-        return null;
+    }
+    public void deleteFromFireBase( String userID, MealDTO meal, String day, String type) {
+        myRef.child(userID)
+                .child(type)
+                .child(day)
+                .child(meal.getIdMeal())
+                .removeValue();
+    }
+
+    public DatabaseReference getAllPlanByDay(String userID, String day, String type) {
+        return myRef.child(userID)
+                .child(type)
+                .child(day);
+
+    }
+    public DatabaseReference getFavorite(String userID, String type) {
+
+        return myRef.child(userID)
+                .child(type)
+                .child(Constant.FIREBASE_FAVORITE);
     }
 
 }

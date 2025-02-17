@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import com.example.yumlyst.database.room.LocalDataSource;
 import com.example.yumlyst.model.LocalDTO;
+import com.example.yumlyst.repository.FireBaseRepo;
 import com.example.yumlyst.repository.LocalRepo;
 import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.model.MealDTO;
@@ -17,11 +18,14 @@ public class DetailsPresenter implements IDetailsPresenter{
     private IDetailsView detailsView;
     private RemoteMealRepo mealRepo;
     private LocalRepo localRepo;
+    FireBaseRepo fireBaseRepo;
 
     public DetailsPresenter(IDetailsView detailsView, RemoteMealRepo mealRepo,LocalRepo localRepo) {
         this.detailsView = detailsView;
         this.mealRepo = mealRepo;
         this.localRepo=localRepo;
+        fireBaseRepo=FireBaseRepo.getInstance();
+
     }
     @SuppressLint("CheckResult")
     @Override
@@ -40,6 +44,7 @@ public class DetailsPresenter implements IDetailsPresenter{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
+        fireBaseRepo.insert(localDTO);
     }
 
 

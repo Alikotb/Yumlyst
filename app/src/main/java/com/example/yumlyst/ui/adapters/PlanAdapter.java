@@ -61,7 +61,8 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     }
 
     public void setList(List<MealDTO> dtos) {
-        this.dtos = dtos;
+        this.dtos.clear();
+        this.dtos.addAll(dtos);
         notifyDataSetChanged();
     }
 

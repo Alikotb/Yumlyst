@@ -62,7 +62,6 @@ public class Calender {
         );
 
         datePickerDialog.getDatePicker().setMinDate(getMinDateForDialog());
-        datePickerDialog.getDatePicker().setMaxDate(getMaxDate());
         datePickerDialog.show();
     }
 

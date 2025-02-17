@@ -3,8 +3,10 @@ package com.example.yumlyst.ui.planscrean.presenter;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.LocalDTO;
 import com.example.yumlyst.model.MealDTO;
+import com.example.yumlyst.repository.FireBaseRepo;
 import com.example.yumlyst.repository.LocalRepo;
 import com.example.yumlyst.ui.favoritescrean.view.IFavoriteView;
 import com.example.yumlyst.ui.planscrean.view.IPlanView;
@@ -17,9 +19,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class PlanPresenter implements IPlanPresenter {
     private IPlanView view;
     private LocalRepo localRepo;
+    private FireBaseRepo fireBaseRepo;
     public PlanPresenter(LocalRepo localRepo, IPlanView view) {
         this.localRepo = localRepo;
         this.view = view;
+        fireBaseRepo=FireBaseRepo.getInstance();
     }
 
     @SuppressLint("CheckResult")
@@ -32,6 +36,7 @@ public class PlanPresenter implements IPlanPresenter {
                         () -> view.deleteMeal(meal),
                         throwable -> view.deleteMeal(null)
                 );
+        fireBaseRepo.deleteFromFireBase(userID,meal,day, Constant.PLAN);
     }
 
     @SuppressLint("CheckResult")
@@ -48,7 +53,6 @@ public class PlanPresenter implements IPlanPresenter {
                 .subscribe(
                         meals -> {
                             view.showMeals(meals);
-                            Log.d("sss", "hamda : " +meals.size());
                         },
                         throwable -> view.showMeals(null)
                 );
