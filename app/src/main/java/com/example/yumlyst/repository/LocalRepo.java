@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Single;
 
 public class LocalRepo {
     private static LocalRepo instance = null;
-    LocalDataSource localDataSource;
+    private LocalDataSource localDataSource;
     private LocalRepo(LocalDataSource localDataSource) {
         this.localDataSource = localDataSource;
     }
@@ -39,6 +39,9 @@ public class LocalRepo {
     }
     public Single<List<LocalDTO>> getAllPlanByDay(String userID, String day, String type) {
         return localDataSource.getAllPlanByDay(userID, day, type);
+    }
+    public Completable insertAll(List<LocalDTO> localDTO) {
+        return localDataSource.insertAll(localDTO);
     }
 
 }

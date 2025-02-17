@@ -51,7 +51,7 @@ public class Calender {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 context,
                 (view, selectedYear, selectedMonth, selectedDay) -> {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
                     Calendar selectedCal = Calendar.getInstance();
                     selectedCal.set(selectedYear, selectedMonth, selectedDay);
                     String selectedDate = sdf.format(selectedCal.getTime());

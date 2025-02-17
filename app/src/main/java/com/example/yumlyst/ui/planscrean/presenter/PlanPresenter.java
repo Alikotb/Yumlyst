@@ -1,8 +1,11 @@
 package com.example.yumlyst.ui.planscrean.presenter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.Log;
 
+import com.airbnb.lottie.animation.content.Content;
+import com.example.yumlyst.database.room.LocalDataSource;
 import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.LocalDTO;
 import com.example.yumlyst.model.MealDTO;
@@ -20,8 +23,8 @@ public class PlanPresenter implements IPlanPresenter {
     private IPlanView view;
     private LocalRepo localRepo;
     private FireBaseRepo fireBaseRepo;
-    public PlanPresenter(LocalRepo localRepo, IPlanView view) {
-        this.localRepo = localRepo;
+    public PlanPresenter(IPlanView view, Context context) {
+        this.localRepo = LocalRepo.getInstance(LocalDataSource.getInstance(context));
         this.view = view;
         fireBaseRepo=FireBaseRepo.getInstance();
     }

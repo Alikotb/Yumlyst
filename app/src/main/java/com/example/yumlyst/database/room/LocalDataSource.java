@@ -32,6 +32,11 @@ public class LocalDataSource {
 
     }
 
+    public Completable insertAll(List<LocalDTO> localDTO) {
+        return dao.insertAll(localDTO);
+
+    }
+
     public Completable deleteFromPlan(String userID, MealDTO meal, String day) {
         return dao.deleteFromPlan(userID, meal, day);
 

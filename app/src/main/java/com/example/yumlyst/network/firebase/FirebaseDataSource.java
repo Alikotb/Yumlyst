@@ -28,6 +28,7 @@ public class FirebaseDataSource {
         }
         return instance;
     }
+
     public  void insert(LocalDTO localDTO ){
         myRef.child(localDTO.getUserID())
                 .child(localDTO.getType())
@@ -44,17 +45,14 @@ public class FirebaseDataSource {
                 .removeValue();
     }
 
-    public DatabaseReference getAllPlanByDay(String userID, String day, String type) {
+    public DatabaseReference getAllPlansForUser(String userID, String type) {
         return myRef.child(userID)
-                .child(type)
-                .child(day);
-
+                .child(type);
     }
     public DatabaseReference getFavorite(String userID, String type) {
 
         return myRef.child(userID)
-                .child(type)
-                .child(Constant.FIREBASE_FAVORITE);
+                .child(type);
     }
 
 }

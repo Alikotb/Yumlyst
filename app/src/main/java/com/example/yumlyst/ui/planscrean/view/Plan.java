@@ -61,7 +61,7 @@ public class Plan extends Fragment implements IPlanView {
 
         // Initialize components
         adapter = new PlanAdapter(new ArrayList<>());
-        presenter = new PlanPresenter(LocalRepo.getInstance(LocalDataSource.getInstance(requireContext())), this);
+        presenter = new PlanPresenter( this,requireContext());
         userCashing = UserCashing.getInstance(requireContext());
 
         findViews(view);
@@ -72,7 +72,7 @@ public class Plan extends Fragment implements IPlanView {
     private void setListeners() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             planCalendar.setOnDateChangedListener((view, year, monthOfYear, dayOfMonth) -> {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
                 Calendar selectedCal = Calendar.getInstance();
                 selectedCal.set(year, monthOfYear, dayOfMonth);
                 String day = sdf.format(selectedCal.getTime());

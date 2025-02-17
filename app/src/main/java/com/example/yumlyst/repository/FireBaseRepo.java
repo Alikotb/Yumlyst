@@ -26,11 +26,11 @@ public class FireBaseRepo {
     public void deleteFromFireBase(String userID, MealDTO meal, String day, String type) {
             firebaseDatastore.deleteFromFireBase(userID, meal, day, type);
     }
-    public DatabaseReference getAllPlanByDay(String userID, String day, String type) {
-        return firebaseDatastore.getAllPlanByDay(userID, day, type);
+    public DatabaseReference getAllPlansForUser(String userID, String type) {
+        return firebaseDatastore.getAllPlansForUser(userID, type);
     }
     public DatabaseReference getFavorite(String userID, String type) {
-        return firebaseDatastore.getFavorite(userID, type);
+        return firebaseDatastore.getFavorite(userID,type);
     }
 
 }

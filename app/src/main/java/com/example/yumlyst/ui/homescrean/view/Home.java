@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.yumlyst.MainActivity;
 import com.example.yumlyst.R;
+import com.example.yumlyst.database.UserCashing;
+import com.example.yumlyst.helper.Constant;
 import com.example.yumlyst.model.AreaDTO;
 import com.example.yumlyst.model.CategoryDTO;
 import com.example.yumlyst.model.IngredientDTO;
@@ -69,8 +71,10 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        homePresenter = new HomePresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()));
+        homePresenter = new HomePresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()),requireContext());
         randomMealAdapter = new DailMealAdapter(new ArrayList<>());
+        homePresenter.insertAllPlansFromFirebase(UserCashing.getInstance(requireContext()).getUserId(), Constant.PLAN);
+        homePresenter.insertAllFavoriteFromFirebase(UserCashing.getInstance(requireContext()).getUserId(),Constant.FAVORITE);
     }
 
     @Override
