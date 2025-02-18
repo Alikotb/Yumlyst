@@ -9,11 +9,19 @@ public class Constant {
 
     public final static String FIREBASE_REF="Meal";
     public final static String FIREBASE_FAVORITE="FIREBASE_FAVORITE";
+    public final static String APP_LINK="FIREBASE_FAVORITE";
+    public final static String LINKEDIN_ID="ali-kotb-497a4718a";
+
+    public final static String GITHUB="Alikotb";
+
+    public final static String EMAIL="alikotb38@gmail.com";
 
 
-    public final static String ONLINE_DETAILS="on";
-
-    public final static String OFFLINE_DETAILS="of";
+    public static final String PREF_NAME = "UserPrefs";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PHOTO_URL = "photoUrl";
+    public static final String KEY_USER_ID = "userId";
 
 
 }

@@ -38,8 +38,7 @@ public class LoginPresenter {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Log.d("hhh", "login: "+auth.getCurrentUser().getUid());
-                userCashing.cacheUser(email, auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getPhotoUrl().toString(), auth.getCurrentUser().getUid());
+                userCashing.cacheUser(email, auth.getCurrentUser().getDisplayName()," auth.getCurrentUser().getPhotoUrl()".toString(), auth.getCurrentUser().getUid());
                 view.navigateToHome();
             } else {
                 view.showError(task.getException() != null ? task.getException().getMessage() : "Login failed.");
@@ -59,7 +58,6 @@ public class LoginPresenter {
             if (task.isSuccessful() && task.getResult() != null) {
                 String idToken = task.getResult().getIdToken();
                 firebaseAuthWithGoogle(idToken);
-                //cahes user in shared pref
 
             } else {
                 view.showError("Google Sign-In failed!");

@@ -22,7 +22,6 @@ import com.example.yumlyst.model.IngredientDTO;
 import com.example.yumlyst.model.MealDTO;
 import com.example.yumlyst.network.APICall.RemoteDataSource;
 import com.example.yumlyst.network.authentecation.NetworkUtils;
-import com.example.yumlyst.network.firebase.FirebaseDataSource;
 import com.example.yumlyst.repository.RemoteMealRepo;
 import com.example.yumlyst.ui.OnclickListneres;
 import com.example.yumlyst.ui.adapters.AreaAdapter;
@@ -71,10 +70,12 @@ public class Home extends Fragment implements OnclickListneres, IHomeView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        homePresenter = new HomePresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()),requireContext());
+        homePresenter = new HomePresenter(this, RemoteMealRepo.getInstance(RemoteDataSource.getInstance()), requireContext());
         randomMealAdapter = new DailMealAdapter(new ArrayList<>());
-        homePresenter.insertAllPlansFromFirebase(UserCashing.getInstance(requireContext()).getUserId(), Constant.PLAN);
-        homePresenter.insertAllFavoriteFromFirebase(UserCashing.getInstance(requireContext()).getUserId(),Constant.FAVORITE);
+        if (UserCashing.getInstance(requireContext()).getUserId() != null) {
+            homePresenter.insertAllPlansFromFirebase(UserCashing.getInstance(requireContext()).getUserId(), Constant.PLAN);
+            homePresenter.insertAllFavoriteFromFirebase(UserCashing.getInstance(requireContext()).getUserId(), Constant.FAVORITE);
+        }
     }
 
     @Override

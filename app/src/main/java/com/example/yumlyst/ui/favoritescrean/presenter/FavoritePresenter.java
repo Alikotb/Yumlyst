@@ -42,10 +42,6 @@ public class FavoritePresenter implements IFavoritePresenter{
                         meals -> view.showMeals(meals),
                         throwable -> {}
                 );
-
-        ;
-
-
     }
 
     @SuppressLint("CheckResult")
@@ -59,7 +55,5 @@ public class FavoritePresenter implements IFavoritePresenter{
                         throwable -> {}
                 );
         fireBaseRepo.deleteFromFireBase(id,meal,Constant.FIREBASE_FAVORITE, Constant.FAVORITE);
-
-
     }
 }

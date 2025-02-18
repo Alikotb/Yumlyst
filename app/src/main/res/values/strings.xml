@@ -42,4 +42,7 @@
     <string name="profile">Profile</string>
     <string name="ingredeint">Ingredeint</string>
     <string name="remove">Remove</string>
+    <string name="share_app">Share App</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="with_email">With Email</string>
 </resources>

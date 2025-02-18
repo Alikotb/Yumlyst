@@ -3,13 +3,10 @@ package com.example.yumlyst.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.yumlyst.helper.Constant;
+
 public class UserCashing {
 
-    private static final String PREF_NAME = "UserPrefs";
-    private static final String KEY_USERNAME = "username";
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_PHOTO_URL = "photoUrl";
-    private static final String KEY_USER_ID = "userId";
 
     private static UserCashing instance;
     private final SharedPreferences sharedPreferences;
@@ -17,7 +14,7 @@ public class UserCashing {
     private  String userId;
 
     private UserCashing(Context context) {
-        sharedPreferences = context.getApplicationContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = context.getApplicationContext().getSharedPreferences(Constant.PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
 
@@ -29,21 +26,21 @@ public class UserCashing {
     }
 
     public void cacheUser(String username, String email, String photoUrl, String userId) {
-        editor.putString(KEY_USERNAME, username);
-        editor.putString(KEY_EMAIL, email);
-        editor.putString(KEY_PHOTO_URL, photoUrl);
-        editor.putString(KEY_USER_ID, userId);
+        editor.putString(Constant.KEY_USERNAME, username);
+        editor.putString(Constant.KEY_EMAIL, email);
+        editor.putString(Constant.KEY_PHOTO_URL, photoUrl);
+        editor.putString(Constant.KEY_USER_ID, userId);
         this.userId = userId;
         editor.apply();
     }
 
 
     public boolean isUserLoggedIn() {
-        return sharedPreferences.contains(KEY_USERNAME);
+        return sharedPreferences.contains(Constant.KEY_USERNAME);
     }
 
     public String getUserId() {
-        return sharedPreferences.getString(KEY_USER_ID, null);  // ✅ Retrieve userId from SharedPreferences
+        return sharedPreferences.getString(Constant.KEY_USER_ID, null);  // ✅ Retrieve userId from SharedPreferences
     }
 
 

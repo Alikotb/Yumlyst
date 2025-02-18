@@ -63,7 +63,7 @@ public class Splash extends Fragment {
             }
         };
 
-        handler.postDelayed(navigateRunnable, 3000);
+        handler.postDelayed(navigateRunnable, 4000);
     }
 
     @Override

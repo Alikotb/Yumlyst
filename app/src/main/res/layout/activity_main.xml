@@ -33,6 +33,18 @@
         app:lottie_rawRes="@raw/internet"
         android:visibility="gone"
         />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/offlineAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/anime"
+        android:visibility="gone"
+        />
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

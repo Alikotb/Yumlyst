@@ -23,7 +23,7 @@ public class SignUpPresenter {
         auth = FirebaseAuth.getInstance();
         this.view = view;
         userCashing = UserCashing.getInstance(context);
-        ;
+
 
     }
 
@@ -42,8 +42,7 @@ public class SignUpPresenter {
                         user.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
-                                        //cahes user in shared pref
-                                        userCashing.cacheUser(name, email, user.getPhotoUrl().toString(), user.getUid());
+                                        userCashing.cacheUser(name, email, "user.getPhotoUrl().toString()", user.getUid());
                                         view.navigateToHome();
                                     } else {
                                         view.showError(task.getException().getMessage());
