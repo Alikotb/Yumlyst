@@ -49,7 +49,17 @@ Yummlyst is a meal recipe app that helps users explore random meals, search for 
 - **API:** Fetching meal data from an external API.
 
 ## Screenshots
-(Add screenshots of your app here)
+![Splash Screen](image/splash.png)
+![Guest Screen](image/first.png)
+![Login Screen](image/login.png)
+![Sign Up Screen](image/sign.png)
+![Home Screen](image/home.png)
+![Home Screen](image/home2.png)
+![Categories Screen](image/cat.png)
+![Detail Screen](image/detail.png)
+![Plan Screen](image/plan.png)
+![Favorite Screen](image/fav.png)
+![Profile Screen](image/profile.png)
 
 ## Installation & Setup
 1. Clone the repository.
