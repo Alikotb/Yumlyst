@@ -68,7 +68,8 @@ Yummlyst is a meal recipe app that helps users explore random meals, search for 
 4. Run the app on an emulator or physical device.
 
 ## Contact
-For any inquiries, connect with me on **LinkedIn**: [Your LinkedIn Profile](#)
+For any inquiries, connect with me on **LinkedIn**: www.linkedin.com/in/ali-kotb-497a4718a
+
 
 ## License
 This project is open-source and available for personal and educational use.
