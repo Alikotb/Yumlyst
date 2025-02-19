@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Details_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FAFAFA"
+        android:fillViewport="true"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- Forward Button -->
+            <ImageButton
+                android:id="@+id/btnImage"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:contentDescription="@string/go_back"
+                android:elevation="12dp"
+                android:focusable="true"
+                android:padding="8dp"
+
+                android:scaleType="centerInside"
+                android:src="@drawable/previous"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!-- Meal Image -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mealImageContainer"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:elevation="6dp"
+                android:radius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/mealImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/food_dish" />
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Meal Name -->
+            <TextView
+                android:id="@+id/mealDetailsName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="Teriyaki Chicken Casserole"
+                android:textColor="#333"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealImageContainer" />
+
+            <!-- Category and Area -->
+            <TextView
+                android:id="@+id/mealCategoryArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="16dp"
+                android:text="Chicken | Japanese"
+                android:textColor="#777"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealDetailsName" />
+
+            <!-- Instructions -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mealInstructionsContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:padding="12dp"
+                android:radius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealCategoryArea">
+
+                <TextView
+                    android:id="@+id/mealInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preheat oven to 350°F. Cook chicken and mix with rice."
+                    android:textColor="#444"
+                    android:textSize="14sp" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Ingredients List -->
+            <TextView
+                android:id="@+id/mealIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="Ingredients:"
+                android:textColor="#222"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealInstructionsContainer" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ingredientsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:elevation="4dp"
+                android:nestedScrollingEnabled="false"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealIngredients"
+                tools:listitem="@layout/details_card" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <!-- Fixed Bottom Buttons -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

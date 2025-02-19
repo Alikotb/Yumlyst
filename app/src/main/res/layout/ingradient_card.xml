@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/daily_meal_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="2dp"
+    android:background="@color/whole_app_color"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- CardView for the Image (to round corners) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/categoryCard"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:elevation="6dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.95">
+
+            <ImageView
+                android:id="@+id/categoryImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/food_dish" />
+        </androidx.cardview.widget.CardView>
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/removeItem"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/minus"
+            android:elevation="8dp"
+            />
+
+        <!-- Food Category (First text) -->
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/soft_white"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/daily_meal"
+            android:textColor="@color/app_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Food Name (Second text)Daily_meal_name dealymealcategory -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

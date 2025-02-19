@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splach">
+
+    <fragment
+        android:id="@+id/splach"
+        android:name="com.example.yumlyst.view.splchscrean.Splash"
+        android:label="Splach" >
+        <action
+            android:id="@+id/action_splach_to_firstScreen"
+            app:destination="@id/firstScreen"
+            app:popUpTo="@id/splach"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splach_to_home2"
+            app:destination="@id/home2"
+            app:popUpTo="@id/splach"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstScreen"
+        android:name="com.example.yumlyst.view.register.FirstScreen"
+        android:label="FirstScreen" >
+        <action
+            android:id="@+id/action_firstScreen_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_firstScreen_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.yumlyst.view.authentecation.login.Login"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login_to_signUp"
+            app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_login_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.example.yumlyst.view.authentecation.signup.SignUp"
+        android:label="SignUp" >
+        <action
+            android:id="@+id/action_signUp_to_home22"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.yumlyst.view.home.Home"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_home2_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_home2_to_detailsFrag"
+            app:destination="@id/detailsFrag" />
+        <action
+            android:id="@+id/action_home2_to_searchFrag"
+            app:destination="@id/searchFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.yumlyst.view.authentecation.profile.Profile"
+        android:label="Profile" >
+        <action
+            android:id="@+id/action_profile_to_firstScreen"
+            app:destination="@id/firstScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/plan"
+        android:name="com.example.yumlyst.view.plan.Plan"
+        android:label="Plan" >
+        <action
+            android:id="@+id/action_plan_to_offlineDetails"
+            app:destination="@id/offlineDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFrag"
+        android:name="com.example.yumlyst.view.details.DetailsFrag"
+        android:label="DetailsFrag" >
+        <action
+            android:id="@+id/action_detailsFrag_to_home2"
+            app:destination="@id/home2" />
+        <argument
+            android:name="ID"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFrag"
+        android:name="com.example.yumlyst.view.search.SearchFrag"
+        android:label="SearchFrag" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchFrag_to_detailsFrag"
+            app:destination="@id/detailsFrag" />
+        <action
+            android:id="@+id/action_searchFrag_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorite2"
+        android:name="com.example.yumlyst.view.favorite.Favorite"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favorite2_to_offlineDetails"
+            app:destination="@id/offlineDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineDetails"
+        android:name="com.example.yumlyst.view.details.OfflineDetails"
+        android:label="OfflineDetails" >
+        <argument
+            android:name="meal"
+            app:argType="com.example.yumlyst.model.MealDTO" />
+        <action
+            android:id="@+id/action_offlineDetails_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+</navigation>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Home_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whole_app_color">
+
+
+    <!-- نص الترحيب -->
+
+    <!-- مربع البحث -->
+
+    <!-- مجموعة الفلاتر (ChipGroup) -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipsSearchGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:singleSelection="true"
+        android:visibility="gone"
+        >
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/categoriesChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:text="@string/categories"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="@color/app_color"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/areaChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:text="@string/area"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="@color/app_color"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/ingredientChip"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredeint"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="@color/app_color"/>
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.constraintlayout.widget.Group
+
+        android:id="@+id/groupHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="profile_image,welcometxt,searchView,scrollView2" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/welcometxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/welcome"
+        android:textColor="@color/app_color"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/search"
+        android:elevation="8dp"
+        android:iconifiedByDefault="true"
+        android:padding="8dp"
+        android:queryHint="Search here..."
+        app:layout_constraintTop_toBottomOf="@id/profile_image"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chipsSearchGroup">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/_home_page_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dailytxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="42dp"
+                android:text="@string/daily_meal"
+                android:textColor="@color/app_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <!-- Daily Meals RecyclerView -->
+            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+                android:id="@+id/Daily_meal_res"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/dailytxt"
+                app:reverseLayout="false"
+                tools:listitem="@layout/daily_meal_card" />
+
+
+            <!-- Categories Text -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/categorytxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/categories"
+                android:textColor="@color/app_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/dailytxt"
+                app:layout_constraintTop_toBottomOf="@id/Daily_meal_res" />
+
+            <!-- Categories RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryResc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/categorytxt"
+                app:spanCount="2"
+                tools:listitem="@layout/category_card" />
+
+            <!-- Countries Text -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Countriestxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/areas"
+                android:textColor="@color/app_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/dailytxt"
+                app:layout_constraintTop_toBottomOf="@id/categoryResc" />
+
+            <!-- Countries RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/CountiesResc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/Countriestxt"
+                app:spanCount="2"
+                tools:listitem="@layout/category_card" />
+
+            <!-- Countries Text -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ingradienttxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/ingredeint"
+                android:textColor="@color/app_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/dailytxt"
+                app:layout_constraintTop_toBottomOf="@id/CountiesResc" />
+
+            <!-- Countries RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ingradientResc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/ingradienttxt"
+                app:spanCount="3"
+                tools:listitem="@layout/ingradient_card" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
