@@ -8,7 +8,6 @@
     android:padding="16dp"
     android:background="@color/whole_app_color">
 
-    <!-- Logo Image -->
     <ImageView
         android:id="@+id/logo_image"
         android:layout_width="100dp"
@@ -22,21 +21,27 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:shapeAppearanceOverlay="@style/CircularImageView" />
 
-    <!-- Date Picker -->
     <DatePicker
         android:id="@+id/planClaender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-
         android:datePickerMode="spinner"
         android:calendarViewShown="false"
         android:background="@color/focused_color"
         app:layout_constraintTop_toBottomOf="@id/logo_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Meal Plan RecyclerView -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/planAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/logo_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/anime" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/planRecycler"
         android:layout_width="match_parent"

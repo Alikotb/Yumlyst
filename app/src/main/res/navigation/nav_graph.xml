@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splach"
-        android:name="com.example.yumlyst.ui.splchscrean.view.Splash"
+        android:name="com.example.yumlyst.view.splchscrean.Splash"
         android:label="Splach" >
         <action
             android:id="@+id/action_splach_to_firstScreen"
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/firstScreen"
-        android:name="com.example.yumlyst.ui.firstscrean.view.FirstScreen"
+        android:name="com.example.yumlyst.view.register.FirstScreen"
         android:label="FirstScreen" >
         <action
             android:id="@+id/action_firstScreen_to_login"
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="com.example.yumlyst.ui.authentecation.loginscrean.view.Login"
+        android:name="com.example.yumlyst.view.authentecation.login.Login"
         android:label="Login" >
         <action
             android:id="@+id/action_login_to_signUp"
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUp"
-        android:name="com.example.yumlyst.ui.authentecation.signupscrean.view.SignUp"
+        android:name="com.example.yumlyst.view.authentecation.signup.SignUp"
         android:label="SignUp" >
         <action
             android:id="@+id/action_signUp_to_home22"
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/home2"
-        android:name="com.example.yumlyst.ui.homescrean.view.Home"
+        android:name="com.example.yumlyst.view.home.Home"
         android:label="Home" >
         <action
             android:id="@+id/action_home2_to_profile"
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.yumlyst.ui.authentecation.profilescrean.view.Profile"
+        android:name="com.example.yumlyst.view.authentecation.profile.Profile"
         android:label="Profile" >
         <action
             android:id="@+id/action_profile_to_firstScreen"
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/plan"
-        android:name="com.example.yumlyst.ui.planscrean.view.Plan"
+        android:name="com.example.yumlyst.view.plan.Plan"
         android:label="Plan" >
         <action
             android:id="@+id/action_plan_to_offlineDetails"
@@ -82,7 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFrag"
-        android:name="com.example.yumlyst.ui.mealdetails.view.DetailsFrag"
+        android:name="com.example.yumlyst.view.details.DetailsFrag"
         android:label="DetailsFrag" >
         <action
             android:id="@+id/action_detailsFrag_to_home2"
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFrag"
-        android:name="com.example.yumlyst.ui.search.view.SearchFrag"
+        android:name="com.example.yumlyst.view.search.SearchFrag"
         android:label="SearchFrag" >
         <argument
             android:name="type"
@@ -107,7 +107,7 @@
     </fragment>
     <fragment
         android:id="@+id/favorite2"
-        android:name="com.example.yumlyst.ui.favoritescrean.view.Favorite"
+        android:name="com.example.yumlyst.view.favorite.Favorite"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <action
@@ -116,7 +116,7 @@
     </fragment>
     <fragment
         android:id="@+id/offlineDetails"
-        android:name="com.example.yumlyst.ui.mealdetails.view.OfflineDetails"
+        android:name="com.example.yumlyst.view.details.OfflineDetails"
         android:label="OfflineDetails" >
         <argument
             android:name="meal"

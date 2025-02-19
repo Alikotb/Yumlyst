@@ -7,54 +7,12 @@
     android:background="@color/whole_app_color">
 
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profile_profilepage_image"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/CircularImageView" />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/profileGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="profile_profilepage_image,username,email,share_app_button,diveder,contactUs,diveder2,linearLayout" />
 
-
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="64dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/rectan"
-        android:enabled="false"
-        android:paddingStart="16dp"
-        android:text="@string/username"
-        android:textColor="@color/app_color"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/profile_profilepage_image"
-        app:layout_constraintStart_toStartOf="@+id/profile_profilepage_image"
-        app:layout_constraintTop_toBottomOf="@+id/profile_profilepage_image">
-
-    </com.google.android.material.textfield.MaterialAutoCompleteTextView>
-
-
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="64dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rectan"
-        android:enabled="false"
-        android:paddingStart="16dp"
-        android:text="@string/email"
-        android:textColor="@color/app_color"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/username"
-        app:layout_constraintStart_toStartOf="@+id/username"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logout_button"
@@ -76,6 +34,55 @@
         app:layout_constraintTop_toBottomOf="@+id/email"
 
         />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_profilepage_image"
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircularImageView"
+        />
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="64dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rectan"
+        android:enabled="false"
+        android:paddingStart="16dp"
+        android:text="@string/username"
+        android:textColor="@color/app_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/profile_profilepage_image"
+        app:layout_constraintStart_toStartOf="@+id/profile_profilepage_image"
+        app:layout_constraintTop_toBottomOf="@+id/profile_profilepage_image">
+
+    </com.google.android.material.textfield.MaterialAutoCompleteTextView>
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="64dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rectan"
+        android:enabled="false"
+        android:paddingStart="16dp"
+        android:text="@string/email"
+        android:textColor="@color/app_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/username"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/share_app_button"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -87,11 +94,11 @@
         android:textSize="18sp"
         app:cornerRadius="12dp"
         app:icon="@drawable/link"
-        app:strokeColor="@color/white"
         app:iconTint="@color/app_color"
         app:layout_constraintEnd_toEndOf="@+id/logout_button"
         app:layout_constraintStart_toStartOf="@+id/logout_button"
-        app:layout_constraintTop_toBottomOf="@+id/logout_button" />
+        app:layout_constraintTop_toBottomOf="@+id/logout_button"
+        app:strokeColor="@color/white" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/diveder"
@@ -130,6 +137,7 @@
         app:layout_constraintTop_toTopOf="@+id/diveder" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -155,7 +163,8 @@
             android:background="@drawable/linkedin"
             android:text="@string/with_email"
             android:textSize="18sp"
-            app:cornerRadius="12dp" />
+            app:cornerRadius="12dp"
+            />
 
         <ImageButton
             android:id="@+id/withGithub"
@@ -167,7 +176,6 @@
             android:textSize="18sp"
             app:cornerRadius="12dp" />
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

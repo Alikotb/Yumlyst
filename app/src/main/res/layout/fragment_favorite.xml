@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/whole_app_color">
 
-    <!-- App Logo -->
     <ImageView
         android:id="@+id/appLogo"
         android:layout_width="100dp"
@@ -18,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- "Favorites" Title -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/Favouritestxt"
         android:layout_width="wrap_content"
@@ -33,7 +31,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appLogo" />
 
-    <!-- RecyclerView for Favorite Items -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/planAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/Favouritestxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/anime" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriteRecycle"
         android:layout_width="match_parent"
